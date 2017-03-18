@@ -16,6 +16,8 @@ namespace TeamRankingApp.Domain
     {
         public Player[] Players { get; set; }
 
+        //This takes in two players and checks if the same player is being entered twice.
+
         public Team(Player A, Player B)
         {
             if (A == B)
@@ -23,14 +25,19 @@ namespace TeamRankingApp.Domain
             Players = new Player[2] { A, B };
         }
 
+        //This is used by Match to check if A-B is the same as B-A
+
+        //generic not used in project
         public override bool Equals(object obj)
         {
             return (Team)obj == this;
         }
+        //generic not used in project
         public override int GetHashCode()
         {
             return (int)Math.Pow(Players[0].PlayerID, Players[1].PlayerID);
         }
+
 
         public static bool operator ==(Team a, Team b)
         {
@@ -50,6 +57,7 @@ namespace TeamRankingApp.Domain
             return b.Players.Contains(a.Players[0]) && b.Players.Contains(a.Players[1]);
         }
 
+        //generic not used in project YET
         public static bool operator !=(Team a, Team b)
         {
             return !(a == b);
