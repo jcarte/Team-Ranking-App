@@ -15,7 +15,6 @@ namespace TeamRankingApp.UnitTests
             // or in any reference assemblies
             // AddTest (typeof (Your.Library.TestClass).Assembly);
 
-            AddTest(typeof(TestsSample).Assembly);
 
             // Once you called base.OnCreate(), you cannot add more assemblies.
             base.OnCreate(bundle);
