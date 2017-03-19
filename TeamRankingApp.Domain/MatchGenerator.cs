@@ -42,7 +42,8 @@ namespace TeamRankingApp.Domain
         private List<Player> activePlayers;
         private MatchCollection chosenMatches;
 
-
+        List<Team> allTeams;
+        List<Match> allMatches;
 
         // -2-
 
@@ -55,6 +56,8 @@ namespace TeamRankingApp.Domain
         {
             this.activePlayers = players;
             this.chosenMatches = new MatchCollection();
+            this.allTeams = GetAllTeams(players);
+            this.allMatches = GetAllMatches(allTeams, players);
         }
 
         
@@ -68,19 +71,10 @@ namespace TeamRankingApp.Domain
         /// <returns>Get all matches for the currently playing players</returns>
         /// 
 
-        public List<Match> GetAllMatches(int n)
+        public List<Match> GetMatches(int n)
         {
-
-            //Player p1 = activePlayers[0]; - example of how to get a player
-
-            //Step 1 - populate all combinations of teams
-
-            List<Team> allTeams = GetAllTeams(activePlayers);
-
-            //Step 2 - populate all combinations of matches
-
-            List<Match> allMatches = GetAllMatches(allTeams, activePlayers);
-
+            List<Match> newMatches = new List<Match>();
+            
             for (int i = 0; i < n; i++)
             {
                 if (chosenMatches.FinalMatchList.Count==0)
@@ -89,7 +83,9 @@ namespace TeamRankingApp.Domain
                     int len = allMatches.Count;
                     Random r = new Random();
                     int j = r.Next(0, len - 1);
-                    chosenMatches.AddMatch(allMatches[j]);
+                    Match m = allMatches[j];
+                    chosenMatches.AddMatch(m);
+                    newMatches.Add(m);
                 }
                 else
                 {
@@ -109,15 +105,12 @@ namespace TeamRankingApp.Domain
 
                     Match cm = matchRankScore.OrderByDescending(m => m.Item1).First().Item2;
                     chosenMatches.AddMatch(cm);
-
+                    newMatches.Add(cm);
                 }
 
             }
 
-            return chosenMatches.FinalMatchList;
-
-
-
+            return newMatches;
 
         }
 
