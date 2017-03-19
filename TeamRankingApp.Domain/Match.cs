@@ -15,12 +15,16 @@ namespace TeamRankingApp.Domain
     public class Match
     {
         public Team[] Teams { get; }
+        public List<Player> OffCourtPlayers { get; set; }
 
-        public Match(Team A, Team B)
+        public Match(Team A, Team B, List<Player> AllPlayers)
         {
             if (A == B)
                 throw new ArgumentException("A team cannot play itself");
             Teams = new Team[2] { A, B };
+
+            OffCourtPlayers = AllPlayers.Except(A.Players).Except(B.Players).ToList();
+            //TODO - check all players contains a and b
         }
 
         public override bool Equals(object obj)

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Match.cs" />
+    <Compile Include="MatchCollection.cs" />
     <Compile Include="MatchGenerator.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

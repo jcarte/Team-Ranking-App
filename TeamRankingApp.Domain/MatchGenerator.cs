@@ -36,6 +36,14 @@ namespace TeamRankingApp.Domain
             return players;
         }
 
+
+
+        //Players in this session ready to be matched - this has been passed from the front end
+        private List<Player> activePlayers;
+        private MatchCollection chosenMatches;
+
+
+
         // -2-
 
         /// <summary>
@@ -46,10 +54,10 @@ namespace TeamRankingApp.Domain
         public MatchGenerator(List<Player> players)
         {
             this.activePlayers = players;
+            this.chosenMatches = new MatchCollection();
         }
 
-        //Players in this session ready to be matched - this has been passed from the front end
-        private List<Player> activePlayers;
+        
 
 
         // -3-
@@ -60,7 +68,7 @@ namespace TeamRankingApp.Domain
         /// <returns>Get all matches for the currently playing players</returns>
         /// 
 
-        public List<Match> GetAllMatches()
+        public List<Match> GetAllMatches(int n)
         {
 
             //Player p1 = activePlayers[0]; - example of how to get a player
@@ -73,29 +81,43 @@ namespace TeamRankingApp.Domain
 
             List<Match> allMatches = GetAllMatches(allTeams);
 
+            for (int i = 0; i < n; i++)
+            {
+                if (chosenMatches.FinalMatchList.Count==0)
+                {
+                    //set first match randomly
+                    int len = allMatches.Count;
+                    Random r = new Random();
+                    int j = r.Next(0, len - 1);
+                    chosenMatches.AddMatch(allMatches[j]);
+                }
+                else
+                {
+                    List<Tuple<int, Match>> matchRankScore = new List<Tuple<int, Match>>();
 
-            ///////////START HEREE!!!!!!!
+                    foreach (Match m in allMatches)
+                    {
+                        int mScore = chosenMatches.MatchConsecutiveNotPlayed(m);
+                        int tScore = (int)Math.Pow(chosenMatches.TeamConsecutiveOffCourt(m.Teams[0]),2) + (int)Math.Pow(chosenMatches.TeamConsecutiveOffCourt(m.Teams[1]),2);
+                        int iScore = (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[0].Players[0]), 4) + (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[0].Players[1]), 4) + (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[1].Players[0]), 4) + (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[1].Players[1]), 4);
+
+                        int rankingScore = mScore + tScore + iScore;
+
+                        Tuple<int, Match> tup = new Tuple<int, Match>(rankingScore, m);
+                        matchRankScore.Add(tup);
+                    }
+
+                    Match cm = matchRankScore.OrderByDescending(m => m.Item1).First().Item2;
+                    chosenMatches.AddMatch(cm);
+
+                }
+
+            }
+
+            return chosenMatches.FinalMatchList;
 
 
 
-
-
-
-
-            //Step x - output the matches to be played
-            List<Match> finalMatches = new List<Match>();
-
-            //Team t1 = new Team(p1, p2);
-            //Team t2 = new Team(p3, p4);
-
-            //Match m = new Match(t1, t2);
-
-
-            //MatchCollection matches = new MatchCollection();
-            //matches.Add(m);
-
-
-            return finalMatches;
 
         }
 
