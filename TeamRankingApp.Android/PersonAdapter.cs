@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Java.Lang;
 using TeamRankingApp.Domain;
+using static Android.Views.ViewGroup;
 
 namespace TeamRankingApp.Android
 {
@@ -72,6 +73,11 @@ namespace TeamRankingApp.Android
             {
                 // if it's not recycled, initialize some attributes
                 personView = new PersonView(context, players[position]);
+
+
+                var pms = new TableLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent, 1f);
+                personView.LayoutParameters = pms;
+
                 //personView.Player = players[position];
                 //personView.LayoutParameters = new AbsListView.LayoutParams(85, 85);
                 //personView.SetScaleType(ImageView.ScaleType.CenterCrop);

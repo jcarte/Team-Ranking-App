@@ -8,21 +8,36 @@
     android:minHeight="25px">
     <GridView  xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/playerinput_gridview"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:columnWidth="90dp"
         android:numColumns="2"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
         android:gravity="center" />
-<!--<TeamRankingApp.Android.PersonView
+
+  <!--<GridLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/playerinput_gridview"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"></GridLayout>-->
+    <!--android:columnWidth="90dp"
+    android:numColumns="2"
+    android:verticalSpacing="10dp"
+    android:horizontalSpacing="10dp"
+    android:stretchMode="columnWidth"
+    android:gravity="center" />-->
+
+  <!--<TeamRankingApp.Android.PersonView
         android:id="@+id/person1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />-->
     <Button
         android:id="@+id/playerinput_submit"
         android:text="Submit"
+        android:layout_weight="0"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
