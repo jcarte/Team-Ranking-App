@@ -26,6 +26,8 @@ namespace TeamRankingApp.Android
 		
 		public static void UpdateIdValues()
 		{
+			global::TeamRankingApp.Domain.Resource.String.ApplicationName = global::TeamRankingApp.Android.Resource.String.ApplicationName;
+			global::TeamRankingApp.Domain.Resource.String.Hello = global::TeamRankingApp.Android.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -45,7 +47,31 @@ namespace TeamRankingApp.Android
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int Guy = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int Icon = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int James = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int Luca = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int Martin = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int Megan = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int Neil = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int Nicola = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int Rick = 2130837512;
 			
 			static Drawable()
 			{
@@ -62,6 +88,12 @@ namespace TeamRankingApp.Android
 			
 			// aapt resource value: 0x7f050001
 			public const int checkBox1 = 2131034113;
+			
+			// aapt resource value: 0x7f050002
+			public const int playerinput_gridview = 2131034114;
+			
+			// aapt resource value: 0x7f050003
+			public const int playerinput_submit = 2131034115;
 			
 			// aapt resource value: 0x7f050000
 			public const int textView1 = 2131034112;
@@ -83,7 +115,10 @@ namespace TeamRankingApp.Android
 			public const int Main = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int PlayerInput = 2130903041;
+			public const int MatchViewer = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int PlayerInput = 2130903042;
 			
 			static Layout()
 			{
