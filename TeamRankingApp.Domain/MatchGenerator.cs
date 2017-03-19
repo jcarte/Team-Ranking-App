@@ -79,7 +79,7 @@ namespace TeamRankingApp.Domain
 
             //Step 2 - populate all combinations of matches
 
-            List<Match> allMatches = GetAllMatches(allTeams);
+            List<Match> allMatches = GetAllMatches(allTeams, activePlayers);
 
             for (int i = 0; i < n; i++)
             {
@@ -146,7 +146,7 @@ namespace TeamRankingApp.Domain
 
         }
 
-        private List<Match> GetAllMatches(List<Team> allTeams)
+        private List<Match> GetAllMatches(List<Team> allTeams, List<Player> allPlayers)
         {
 
             List<Match> ml = new List<Match>();
@@ -159,7 +159,7 @@ namespace TeamRankingApp.Domain
                 //loop through players j from cuurent row (i) to len
                 for (int j = i + 1; j < allTeams.Count; j++)
                 {
-                    Match m = new Match(allTeams[i], allTeams[j]);
+                    Match m = new Match(allTeams[i], allTeams[j], allPlayers);
                     ml.Add(m);
                 }
             }

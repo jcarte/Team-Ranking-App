@@ -26,6 +26,8 @@ namespace TeamRankingApp.Android
 		
 		public static void UpdateIdValues()
 		{
+			global::TeamRankingApp.Domain.Resource.String.ApplicationName = global::TeamRankingApp.Android.Resource.String.ApplicationName;
+			global::TeamRankingApp.Domain.Resource.String.Hello = global::TeamRankingApp.Android.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -63,6 +65,12 @@ namespace TeamRankingApp.Android
 			// aapt resource value: 0x7f050001
 			public const int checkBox1 = 2131034113;
 			
+			// aapt resource value: 0x7f050002
+			public const int playerinput_gridview = 2131034114;
+			
+			// aapt resource value: 0x7f050003
+			public const int playerinput_submit = 2131034115;
+			
 			// aapt resource value: 0x7f050000
 			public const int textView1 = 2131034112;
 			
@@ -83,7 +91,10 @@ namespace TeamRankingApp.Android
 			public const int Main = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int PlayerInput = 2130903041;
+			public const int MatchViewer = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int PlayerInput = 2130903042;
 			
 			static Layout()
 			{
