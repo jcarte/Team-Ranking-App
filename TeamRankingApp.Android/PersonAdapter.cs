@@ -72,6 +72,7 @@ namespace TeamRankingApp.Android
             {
                 // if it's not recycled, initialize some attributes
                 personView = new PersonView(context, players[position]);
+                views.Add(personView);
                 //personView.Player = players[position];
                 //personView.LayoutParameters = new AbsListView.LayoutParams(85, 85);
                 //personView.SetScaleType(ImageView.ScaleType.CenterCrop);

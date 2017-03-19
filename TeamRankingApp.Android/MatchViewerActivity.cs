@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using TeamRankingApp.Domain;
+using Newtonsoft.Json;
+using System.Collections;
 
 namespace TeamRankingApp.Android
 {
@@ -25,9 +27,12 @@ namespace TeamRankingApp.Android
             // Create your application here
             SetContentView(Resource.Layout.MatchViewer);
 
-            int[] ids = Intent.GetIntArrayExtra("Players");
-            List<Player> players = MatchGenerator.GetAllPlayers().Where(p=>ids.Contains(p.PlayerID)).ToList();
-            gen = new MatchGenerator(players);
+            string json = Intent.GetStringExtra("Players");
+            Player[] players = JsonConvert.DeserializeObject<Player[]>(json);
+
+            //int[] ids = .GetIntArrayExtra("Players");
+            //List<Player> players = MatchGenerator.GetAllPlayers().Where(p=>ids.Contains(p.PlayerID)).ToList();
+            gen = new MatchGenerator(players.ToList());
         }
     }
 }

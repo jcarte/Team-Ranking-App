@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using TeamRankingApp.Domain;
 using Java.Lang;
+using Newtonsoft.Json;
 
 namespace TeamRankingApp.Android
 {
@@ -42,10 +43,13 @@ namespace TeamRankingApp.Android
         {
             List<Player> players = ((PersonAdapter)gridview.Adapter).GetSelectedPlayers();
 
-            IList<Integer> playInts = players.Select(p => (Integer)p.PlayerID).ToList();
+            //IList<Integer> playInts = players.Select(p => (Integer)p.PlayerID).ToList();
 
             Intent i = new Intent(this, typeof(MatchViewerActivity));
-            i.PutIntegerArrayListExtra("Players", playInts);
+            //i.PutIntegerArrayListExtra("Players", playInts);
+
+            string json = JsonConvert.SerializeObject(players.ToArray());
+            i.PutExtra("Players", json);
             StartActivity(i);
         }
     }
