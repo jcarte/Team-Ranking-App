@@ -29,22 +29,22 @@ namespace TeamRankingApp.Android
             context = c;
             thumbIds = new int[]
             {
-                Resource.Drawable.Icon,
-                Resource.Drawable.Icon,
-                Resource.Drawable.Icon,
-                Resource.Drawable.Icon,
-                Resource.Drawable.Icon,
-                Resource.Drawable.Icon,
-                Resource.Drawable.Icon,
-                Resource.Drawable.Icon
-                //Resource.Drawable.Guy,
-                //Resource.Drawable.James,
-                //Resource.Drawable.Luca,
-                //Resource.Drawable.Martin,
-                //Resource.Drawable.Megan,
-                //Resource.Drawable.Neil,
-                //Resource.Drawable.Nicola,
-                //Resource.Drawable.Rick
+                //Resource.Drawable.Icon,
+                //Resource.Drawable.Icon,
+                //Resource.Drawable.Icon,
+                //Resource.Drawable.Icon,
+                //Resource.Drawable.Icon,
+                //Resource.Drawable.Icon,
+                //Resource.Drawable.Icon,
+                //Resource.Drawable.Icon
+                Resource.Drawable.Guy,
+                Resource.Drawable.James,
+                Resource.Drawable.Luca,
+                Resource.Drawable.Martin,
+                Resource.Drawable.Megan,
+                Resource.Drawable.Neil,
+                Resource.Drawable.Nicola,
+                Resource.Drawable.Rick
             };
         }
 
