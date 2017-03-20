@@ -21,8 +21,13 @@ namespace TeamRankingApp.Domain
         {
             if (A == B)
                 throw new ArgumentException("A team cannot play itself");
-            Teams = new Team[2] { A, B };
+            if(A.Players.Union(B.Players).Distinct().Count()!= 4)//merge player list, remove duplicates and check number is still 4
+                throw new ArgumentException("A player cannot play on both teams");
+            if(A.Players.Except(AllPlayers).Count() != 0 || B.Players.Except(AllPlayers).Count() != 0) //A-All and B-All should be 0 in both cases
+                throw new ArgumentException("Players in both teams must be in all players");
 
+            Teams = new Team[2] { A, B };
+            
             OffCourtPlayers = AllPlayers.Except(A.Players).Except(B.Players).ToList();
             //TODO - check all players contains a and b
         }
@@ -57,6 +62,11 @@ namespace TeamRankingApp.Domain
         public static bool operator !=(Match a, Match b)
         {
             return !(a == b);
+        }
+
+        public override string ToString()
+        {
+            return $"[{Teams[0]}],[{Teams[1]}]";
         }
     }
 }

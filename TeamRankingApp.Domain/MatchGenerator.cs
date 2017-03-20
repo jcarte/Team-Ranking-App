@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -22,7 +23,6 @@ namespace TeamRankingApp.Domain
         public static List<Player> GetAllPlayers()
         {
             List<Player> players = new List<Player>();
-            
             
             players.Add(new Player() { PlayerID = 1, Name = "Guy" });
             players.Add(new Player() { PlayerID = 2, Name = "James" });
@@ -93,19 +93,35 @@ namespace TeamRankingApp.Domain
 
                     foreach (Match m in allMatches)
                     {
+                        //score for match
                         int mScore = chosenMatches.MatchConsecutiveNotPlayed(m);
-                        int tScore = (int)Math.Pow(chosenMatches.TeamConsecutiveOffCourt(m.Teams[0]),2) + (int)Math.Pow(chosenMatches.TeamConsecutiveOffCourt(m.Teams[1]),2);
-                        int iScore = (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[0].Players[0]), 4) + (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[0].Players[1]), 4) + (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[1].Players[0]), 4) + (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[1].Players[1]), 4);
 
+                        //score for teams
+                        int t1 = (int)Math.Pow(chosenMatches.TeamConsecutiveOffCourt(m.Teams[0]), 2);
+                        int t2 = (int)Math.Pow(chosenMatches.TeamConsecutiveOffCourt(m.Teams[1]), 2);
+                        int tScore = t1 + t2;
+
+                        //scores for individuals
+                        int p1 = (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[0].Players[0]), 4);
+                        int p2 = (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[0].Players[1]), 4);
+                        int p3 = (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[1].Players[0]), 4);
+                        int p4 = (int)Math.Pow(chosenMatches.IndividualConsecutiveOffCourt(m.Teams[1].Players[1]), 4);
+                        int iScore = p1 + p2 + p3 + p4;
+
+                        //add all scores together to get final score
                         int rankingScore = mScore + tScore + iScore;
 
                         Tuple<int, Match> tup = new Tuple<int, Match>(rankingScore, m);
                         matchRankScore.Add(tup);
                     }
 
-                    Match cm = matchRankScore.OrderByDescending(m => m.Item1).First().Item2;
+                    matchRankScore = matchRankScore.OrderByDescending(m => m.Item1).ToList();
+                    Match cm = matchRankScore.First().Item2;
                     chosenMatches.AddMatch(cm);
                     newMatches.Add(cm);
+
+                    //Debug.WriteLine(cm);
+
                 }
 
             }
@@ -152,8 +168,13 @@ namespace TeamRankingApp.Domain
                 //loop through players j from cuurent row (i) to len
                 for (int j = i + 1; j < allTeams.Count; j++)
                 {
-                    Match m = new Match(allTeams[i], allTeams[j], allPlayers);
-                    ml.Add(m);
+                    Team A = allTeams[i];
+                    Team B = allTeams[j];
+                    if (A.Players.Union(B.Players).Distinct().Count() == 4)//only add matches with 4 distinct players
+                    {
+                        Match m = new Match(A, B, allPlayers);
+                        ml.Add(m);
+                    }
                 }
             }
 

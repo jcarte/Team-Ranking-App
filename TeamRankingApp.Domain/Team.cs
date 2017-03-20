@@ -62,5 +62,10 @@ namespace TeamRankingApp.Domain
         {
             return !(a == b);
         }
+
+        public override string ToString()
+        {
+            return $"{Players[0]},{Players[1]}";
+        }
     }
 }

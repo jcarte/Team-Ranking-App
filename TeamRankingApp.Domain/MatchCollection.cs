@@ -53,7 +53,8 @@ namespace TeamRankingApp.Domain
 
         public int IndividualConsecutiveOffCourt(Player p)
         {
-            Match tm = FinalMatchList.LastOrDefault(ma => ma.OffCourtPlayers.Contains(p));
+            //Match tm = FinalMatchList.LastOrDefault(ma => ma.OffCourtPlayers.Contains(p));
+            Match tm = FinalMatchList.LastOrDefault(ma => ma.Teams[0].Players.Contains(p) || ma.Teams[1].Players.Contains(p));
 
             if (tm == null)
                 return FinalMatchList.Count;

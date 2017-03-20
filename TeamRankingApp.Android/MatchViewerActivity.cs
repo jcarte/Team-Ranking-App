@@ -12,6 +12,8 @@ using Android.Widget;
 using TeamRankingApp.Domain;
 using Newtonsoft.Json;
 using System.Collections;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace TeamRankingApp.Android
 {
@@ -25,6 +27,8 @@ namespace TeamRankingApp.Android
         TextView t2p1;
         TextView t2p2;
 
+        Button submit;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -35,8 +39,6 @@ namespace TeamRankingApp.Android
             string json = Intent.GetStringExtra("Players");
             Player[] players = JsonConvert.DeserializeObject<Player[]>(json);
 
-            //int[] ids = .GetIntArrayExtra("Players");
-            //List<Player> players = MatchGenerator.GetAllPlayers().Where(p=>ids.Contains(p.PlayerID)).ToList();
             gen = new MatchGenerator(players.ToList());
             matches = new List<Match>();
 
@@ -45,23 +47,34 @@ namespace TeamRankingApp.Android
             t2p1 = FindViewById<TextView>(Resource.Id.matchviewer_T2P1);
             t2p2 = FindViewById<TextView>(Resource.Id.matchviewer_T2P2);
 
-            ShowNextMatch();
+            ThreadPool.QueueUserWorkItem(o => ShowNextMatch());
 
-            FindViewById<Button>(Resource.Id.matchviewer_next).Click += (s, e) => ShowNextMatch();
+            submit = FindViewById<Button>(Resource.Id.matchviewer_next);
+            submit.Click += (s, e) => ShowNextMatch();
         }
 
         List<Match> matches;
 
         private void ShowNextMatch()
         {
+            //Task<Match> t = Task.Run(() => gen.GetMatches(1).First());
+            //Match m = t.Result;
+
             Match m = gen.GetMatches(1).First();
-            matches.Add(m);
+
+            //matches.Add(m);
+
+            //System.Diagnostics.Debug.WriteLine(m);
+
             ShowMatch(m);
+            //RunOnUiThread(()=>ShowMatch(m));
+            //ShowMatch(m);
         }
 
         private void ShowMatch(Match m)
         {
             t1p1.Text = m.Teams[0].Players[0].Name;
+            t1p1.RefreshDrawableState();
             t1p2.Text = m.Teams[0].Players[1].Name;
             t2p1.Text = m.Teams[1].Players[0].Name;
             t2p2.Text = m.Teams[1].Players[1].Name;
