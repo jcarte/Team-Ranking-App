@@ -50,31 +50,25 @@ namespace TeamRankingApp.Android
             ThreadPool.QueueUserWorkItem(o => ShowNextMatch());
 
             submit = FindViewById<Button>(Resource.Id.matchviewer_next);
-            submit.Click += (s, e) => ShowNextMatch();
+            submit.Click += (s, e) => ThreadPool.QueueUserWorkItem(o => ShowNextMatch());
         }
 
         List<Match> matches;
 
         private void ShowNextMatch()
         {
-            //Task<Match> t = Task.Run(() => gen.GetMatches(1).First());
-            //Match m = t.Result;
-
             Match m = gen.GetMatches(1).First();
 
-            //matches.Add(m);
+            matches.Add(m);
 
             //System.Diagnostics.Debug.WriteLine(m);
 
-            ShowMatch(m);
-            //RunOnUiThread(()=>ShowMatch(m));
-            //ShowMatch(m);
+            RunOnUiThread(()=>ShowMatch(m));
         }
 
         private void ShowMatch(Match m)
         {
             t1p1.Text = m.Teams[0].Players[0].Name;
-            t1p1.RefreshDrawableState();
             t1p2.Text = m.Teams[0].Players[1].Name;
             t2p1.Text = m.Teams[1].Players[0].Name;
             t2p2.Text = m.Teams[1].Players[1].Name;

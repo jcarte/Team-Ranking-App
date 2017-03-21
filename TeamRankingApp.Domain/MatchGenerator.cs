@@ -42,8 +42,8 @@ namespace TeamRankingApp.Domain
         private List<Player> activePlayers;
         private MatchCollection chosenMatches;
 
-        List<Team> allTeams;
-        List<Match> allMatches;
+        List<Team> allTeams = null;
+        List<Match> allMatches = null;
 
         // -2-
 
@@ -56,10 +56,13 @@ namespace TeamRankingApp.Domain
         {
             this.activePlayers = players;
             this.chosenMatches = new MatchCollection();
-            this.allTeams = GetAllTeams(players);
-            this.allMatches = GetAllMatches(allTeams, players);
         }
 
+        private void Init()
+        {
+            this.allTeams = GetAllTeams(activePlayers);
+            this.allMatches = GetAllMatches(allTeams, activePlayers);
+        }
         
 
 
@@ -74,6 +77,9 @@ namespace TeamRankingApp.Domain
         public List<Match> GetMatches(int n)
         {
             List<Match> newMatches = new List<Match>();
+
+            if (allTeams == null || allMatches == null)//delay heavy loading
+                Init();
             
             for (int i = 0; i < n; i++)
             {
