@@ -148,11 +148,18 @@ android:background="#4abdac"
 
     <Button
         android:id="@+id/playerinput_submit"
+        android:background="#4abdac"
         android:text="Submit"
         android:layout_weight="0"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_margin="25dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FC4A1A"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:shadowColor="#4abdac"/>
 </LinearLayout>
 
 

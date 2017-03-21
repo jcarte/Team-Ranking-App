@@ -91,10 +91,19 @@ namespace TeamRankingApp.Android
         
         private void Submit_Click(object sender, EventArgs e)
         {
-            Intent i = new Intent(this, typeof(MatchViewerActivity));//launch match viewer screen
-            string json = JsonConvert.SerializeObject(selectedPlayers.ToArray());//convert all selected players to JSON text
-            i.PutExtra("Players", json);//send JSON text to activity
-            StartActivity(i);//run
+            if (selectedPlayers.Count <4)
+            {
+                Toast.MakeText(this, "Please select 4 or more players", ToastLength.Long).Show();
+
+            }
+            else
+            {
+                Intent i = new Intent(this, typeof(MatchViewerActivity));//launch match viewer screen
+                string json = JsonConvert.SerializeObject(selectedPlayers.ToArray());//convert all selected players to JSON text
+                i.PutExtra("Players", json);//send JSON text to activity
+                StartActivity(i);//run
+            }
+            
         }
     }
 }
