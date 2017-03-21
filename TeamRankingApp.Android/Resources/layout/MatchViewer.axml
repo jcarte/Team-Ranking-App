@@ -16,14 +16,12 @@
         android:layout_marginLeft="100px">
         <ImageButton
             android:id="@+id/matchviewer_T1P1"
-            android:src="@drawable/Guy"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:scaleType="centerInside" />
         <ImageButton
             android:id="@+id/matchviewer_T1P2"
-            android:src="@drawable/James"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -40,14 +38,12 @@
         android:layout_marginRight="100px">
         <ImageButton
             android:id="@+id/matchviewer_T2P1"
-            android:src="@drawable/Neil"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:scaleType="centerInside" />
         <ImageButton
             android:id="@+id/matchviewer_T2P2"
-            android:src="@drawable/Nicola"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -64,7 +60,7 @@
             android:text="Back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.3"
             android:background="#DFDCE3" />
         <Button
             android:id="@+id/matchviewer_next"
@@ -72,13 +68,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:textColor="#FC4A1A"
             android:background="#DFDCE3" />
         <Button
             android:id="@+id/matchviewer_home"
             android:text="Home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.3"
             android:background="#DFDCE3" />
     </LinearLayout>
 </LinearLayout>
