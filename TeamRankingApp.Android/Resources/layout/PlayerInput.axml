@@ -145,11 +145,21 @@ android:background="#4abdac"
     </LinearLayout>
 
   </LinearLayout>
-      
+
+  <ImageButton
+        android:id="@+id/playerinput_submit"
+        android:background="#4ABDAC"
+        android:src="@drawable/letsgo"
+        android:scaleType="centerInside"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="10dp"
+    android:layout_margin="25dp"
+            />
 
 
-
-    <Button
+    <!--<Button
         android:id="@+id/playerinput_submit"
         android:background="#4abdac"
         android:text="Submit"
@@ -162,7 +172,8 @@ android:background="#4abdac"
         android:textColor="#FC4A1A"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:shadowColor="#4abdac"/>
+        android:shadowColor="#4abdac"/>-->
+  
 </LinearLayout>
 
 

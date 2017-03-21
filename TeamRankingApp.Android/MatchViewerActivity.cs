@@ -27,9 +27,9 @@ namespace TeamRankingApp.Android
         ImageButton t2p1;
         ImageButton t2p2;
 
-        Button nextBtn;
-        Button backBtn;
-        Button homeBtn;
+        ImageButton nextBtn;
+        ImageButton backBtn;
+        ImageButton homeBtn;
 
         int matchNumber = 0;//current match number (non 0 based)
 
@@ -42,16 +42,16 @@ namespace TeamRankingApp.Android
             SetContentView(Resource.Layout.MatchViewer);//set layout
 
             //back button
-            backBtn = FindViewById<Button>(Resource.Id.matchviewer_back);
+            backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
             RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
             backBtn.Click += (s, e) => GoToPreviousMatch();
 
             //submit button
-            nextBtn = FindViewById<Button>(Resource.Id.matchviewer_next);
+            nextBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_next);
             nextBtn.Click += (s, e) => ThreadPool.QueueUserWorkItem(o => GoToNextMatch());//get one item onclick
 
             //home button
-            homeBtn = FindViewById<Button>(Resource.Id.matchviewer_home);
+            homeBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_home);
             homeBtn.Click += (s, e) => GoHome();
 
             //get player info from json data

@@ -25,7 +25,7 @@ namespace TeamRankingApp.Android
         ImageButton btnNT;
         ImageButton btnRW;
 
-        Button submit;
+        ImageButton submit;
         List<Player> allPlayers;
         List<Player> selectedPlayers;
 
@@ -57,7 +57,7 @@ namespace TeamRankingApp.Android
             btnNT.Click += (s, e) => ButtonPressed("Nicola", (ImageButton)s);
             btnRW.Click += (s, e) => ButtonPressed("Rick", (ImageButton)s);
 
-            submit = FindViewById<Button>(Resource.Id.playerinput_submit);
+            submit = FindViewById<ImageButton>(Resource.Id.playerinput_submit);
             submit.Click += Submit_Click;
         }
 
