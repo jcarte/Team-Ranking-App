@@ -12,6 +12,7 @@ using Android.Widget;
 using TeamRankingApp.Domain;
 using Java.Lang;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace TeamRankingApp.Android
 {
@@ -19,38 +20,81 @@ namespace TeamRankingApp.Android
     public class PlayerInputActivity : Activity
     {
 
-        GridView gridview;
+        //GridView gridview;
+        ImageButton btnGO;
+        ImageButton btnJC;
+        ImageButton btnLP;
+        ImageButton btnMW;
+        ImageButton btnMP;
+        ImageButton btnN;
+        ImageButton btnNT;
+        ImageButton btnRW;
+
         Button submit;
+        List<Player> allPlayers;
+        List<Player> selectedPlayers;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
             SetContentView(Resource.Layout.PlayerInput);
-            gridview = FindViewById<GridView>(Resource.Id.playerinput_gridview);
-            gridview.Adapter = new PersonAdapter(this,MatchGenerator.GetAllPlayers());
-            //gridview.SetNumColumns(2);
+
+            allPlayers = MatchGenerator.GetAllPlayers();
+            selectedPlayers = new List<Player>();
+
+            //get all image buttons
+            btnGO = FindViewById<ImageButton>(Resource.Id.BtnGuy);
+            btnJC = FindViewById<ImageButton>(Resource.Id.BtnJames);
+            btnLP = FindViewById<ImageButton>(Resource.Id.BtnLuca);
+            btnMW = FindViewById<ImageButton>(Resource.Id.BtnMartin);
+            btnMP = FindViewById<ImageButton>(Resource.Id.BtnMegan);
+            btnN = FindViewById<ImageButton>(Resource.Id.BtnNeil);
+            btnNT = FindViewById<ImageButton>(Resource.Id.BtnNicola);
+            btnRW = FindViewById<ImageButton>(Resource.Id.BtnRick);
+
+            //when each button is clicked, route it to the button pressed method
+            btnGO.Click += (s, e) => ButtonPressed("Guy", (ImageButton)s);
+            btnJC.Click += (s, e) => ButtonPressed("James", (ImageButton)s);
+            btnLP.Click += (s, e) => ButtonPressed("Luca", (ImageButton)s);
+            btnMW.Click += (s, e) => ButtonPressed("Martin", (ImageButton)s);
+            btnMP.Click += (s, e) => ButtonPressed("Megan", (ImageButton)s);
+            btnN.Click += (s, e) => ButtonPressed("Neil", (ImageButton)s);
+            btnNT.Click += (s, e) => ButtonPressed("Nicola", (ImageButton)s);
+            btnRW.Click += (s, e) => ButtonPressed("Rick", (ImageButton)s);
 
             submit = FindViewById<Button>(Resource.Id.playerinput_submit);
             submit.Click += Submit_Click;
-
-            //gridview.ItemClick += delegate (object sender, ItemEventArgs args) {
-            //    Toast.MakeText(this, args.Position.ToString(), ToastLength.Short).Show();
-            //};
         }
 
+        /// <summary>
+        /// Logs that button has been pressed and changes fade on image
+        /// </summary>
+        /// <param name="name">persons name</param>
+        /// <param name="image">button pressed</param>
+        private void ButtonPressed(string name, ImageButton image)
+        {
+            //get persons name from all players
+            Player p = allPlayers.FirstOrDefault(t => t.Name == name);
+            if (selectedPlayers.Contains(p))//is person already "Selected"?
+            {
+                image.ImageAlpha = 255;//make visible
+                selectedPlayers.Remove(p);
+            }
+            else
+            {
+                image.ImageAlpha = 75;//make semi transparent
+                selectedPlayers.Add(p);
+            }
+        }
+
+
+        
         private void Submit_Click(object sender, EventArgs e)
         {
-            List<Player> players = ((PersonAdapter)gridview.Adapter).GetSelectedPlayers();
-
-            //IList<Integer> playInts = players.Select(p => (Integer)p.PlayerID).ToList();
-
-            Intent i = new Intent(this, typeof(MatchViewerActivity));
-            //i.PutIntegerArrayListExtra("Players", playInts);
-
-            string json = JsonConvert.SerializeObject(players.ToArray());
-            i.PutExtra("Players", json);
-            StartActivity(i);
+            Intent i = new Intent(this, typeof(MatchViewerActivity));//launch match viewer screen
+            string json = JsonConvert.SerializeObject(selectedPlayers.ToArray());//convert all selected players to JSON text
+            i.PutExtra("Players", json);//send JSON text to activity
+            StartActivity(i);//run
         }
     }
 }
