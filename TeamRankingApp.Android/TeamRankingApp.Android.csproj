@@ -68,10 +68,10 @@
     <AndroidAsset Include="Assets\AboutAssets.txt" />
     <AndroidAsset Include="Assets\Typo_Round_Regular_Demo.otf" />
     <None Include="Resources\AboutResources.txt" />
-    <AndroidResource Include="Resources\layout\PlayerInput.axml">
+    <AndroidResource Include="Resources\layout\MatchViewer.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\MatchViewer.axml">
+    <AndroidResource Include="Resources\layout\PlayerInput.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
