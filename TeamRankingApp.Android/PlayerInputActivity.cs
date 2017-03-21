@@ -1,22 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using TeamRankingApp.Domain;
-using Java.Lang;
 using Newtonsoft.Json;
-using System.Threading;
 
 namespace TeamRankingApp.Android
 {
-    [Activity(Label = "PlayerInput")]
+    [Activity(Label = "Player Input", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
     public class PlayerInputActivity : Activity
     {
 

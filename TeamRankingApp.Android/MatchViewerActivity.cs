@@ -17,7 +17,7 @@ using System.Threading;
 
 namespace TeamRankingApp.Android
 {
-    [Activity(Label = "MatchViewerActivity")]
+    [Activity(Label = "Matches", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
     public class MatchViewerActivity : Activity
     {
         MatchGenerator gen;
