@@ -16,7 +16,7 @@ namespace TeamRankingApp.Android
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView (Resource.Layout.PlayerInput);
+            //SetContentView (Resource.Layout.PlayerInput);
 
             StartActivity(typeof(PlayerInputActivity));
 
