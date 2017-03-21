@@ -9,21 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:background="#FC4A1A"
         android:gravity="center"
         android:layout_marginRight="100px"
         android:layout_marginLeft="100px">
         <ImageButton
             android:id="@+id/matchviewer_T1P1"
-            android:src="@drawable/Guy"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:scaleType="centerInside" />
         <ImageButton
             android:id="@+id/matchviewer_T1P2"
-            android:src="@drawable/James"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -34,20 +32,18 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:background="#FC4A1A"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:gravity="center"
         android:layout_marginLeft="100px"
         android:layout_marginRight="100px">
         <ImageButton
             android:id="@+id/matchviewer_T2P1"
-            android:src="@drawable/Neil"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:scaleType="centerInside" />
         <ImageButton
             android:id="@+id/matchviewer_T2P2"
-            android:src="@drawable/Nicola"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -56,41 +52,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+       
         android:orientation="horizontal"
         android:layout_weight="1"
         android:gravity="center">
         <ImageButton
             android:id="@+id/matchviewer_back"
-            android:background="#4ABDAC"
-            android:src="@drawable/back"
-            android:scaleType="centerInside"
+android:src="@drawable/back"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="10dp"
-        android:layout_margin="25dp"
-            />
-      <ImageButton
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:background="#DFDCE3" />
+        <ImageButton
             android:id="@+id/matchviewer_next"
-            android:background="#4ABDAC"
             android:src="@drawable/next"
-            android:scaleType="centerInside"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="10dp"
-        android:layout_margin="25dp"
-            />
+            android:layout_margin="10dp"
+            
+            android:background="#DFDCE3" />
         <ImageButton
             android:id="@+id/matchviewer_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#4ABDAC"
             android:src="@drawable/home"
-            android:scaleType="centerInside"
-            android:padding="10dp"
-        android:layout_margin="25dp"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:background="#DFDCE3" />
     </LinearLayout>
 </LinearLayout>
