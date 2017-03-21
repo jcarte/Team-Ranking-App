@@ -61,7 +61,7 @@ namespace TeamRankingApp.Android
 
             matches.Add(m);
 
-            //System.Diagnostics.Debug.WriteLine(m);
+            System.Diagnostics.Debug.WriteLine(m);
 
             RunOnUiThread(()=>ShowMatch(m));
         }

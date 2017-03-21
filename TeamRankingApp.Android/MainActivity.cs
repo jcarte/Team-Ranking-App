@@ -16,21 +16,21 @@ namespace TeamRankingApp.Android
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            //SetContentView (Resource.Layout.PlayerInput);
+            SetContentView (Resource.Layout.PlayerInput);
 
-            //StartActivity(typeof(PlayerInputActivity));
+            StartActivity(typeof(PlayerInputActivity));
 
 
-            List<Player> players = MatchGenerator.GetAllPlayers();
+            //List<Player> players = MatchGenerator.GetAllPlayers();
 
-            //IList<Integer> playInts = players.Select(p => (Integer)p.PlayerID).ToList();
+            ////IList<Integer> playInts = players.Select(p => (Integer)p.PlayerID).ToList();
 
-            Intent i = new Intent(this, typeof(MatchViewerActivity));
-            //i.PutIntegerArrayListExtra("Players", playInts);
+            //Intent i = new Intent(this, typeof(MatchViewerActivity));
+            ////i.PutIntegerArrayListExtra("Players", playInts);
 
-            string json = JsonConvert.SerializeObject(players.ToArray());
-            i.PutExtra("Players", json);
-            StartActivity(i);
+            //string json = JsonConvert.SerializeObject(players.ToArray());
+            //i.PutExtra("Players", json);
+            //StartActivity(i);
 
         }
     }
