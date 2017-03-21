@@ -5,16 +5,18 @@ using System.Collections.Generic;
 using Android.Content;
 using Newtonsoft.Json;
 using TeamRankingApp.Domain;
+using Android.Content.PM;
 
 namespace TeamRankingApp.Android
 {
-    [Activity(Label = "TeamRankingApp.Android", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "FullScreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
     public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
+            //ActionBar.Hide();
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.PlayerInput);
 

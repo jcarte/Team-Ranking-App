@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:background="#FC4A1A"
         android:gravity="center"
         android:layout_marginRight="100px"
@@ -34,7 +34,7 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:background="#FC4A1A"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:gravity="center"
         android:layout_marginLeft="100px"
         android:layout_marginRight="100px">
@@ -59,26 +59,38 @@
         android:orientation="horizontal"
         android:layout_weight="1"
         android:gravity="center">
-        <Button
+        <ImageButton
             android:id="@+id/matchviewer_back"
-            android:text="Back"
+            android:background="#4ABDAC"
+            android:src="@drawable/back"
+            android:scaleType="centerInside"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#DFDCE3" />
-        <Button
+            android:padding="10dp"
+        android:layout_margin="25dp"
+            />
+      <ImageButton
             android:id="@+id/matchviewer_next"
-            android:text="Next"
+            android:background="#4ABDAC"
+            android:src="@drawable/next"
+            android:scaleType="centerInside"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#DFDCE3" />
-        <Button
+            android:padding="10dp"
+        android:layout_margin="25dp"
+            />
+        <ImageButton
             android:id="@+id/matchviewer_home"
-            android:text="Home"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#DFDCE3" />
+            android:background="#4ABDAC"
+            android:src="@drawable/home"
+            android:scaleType="centerInside"
+            android:padding="10dp"
+        android:layout_margin="25dp"
+            />
     </LinearLayout>
 </LinearLayout>
