@@ -22,39 +22,45 @@ namespace TeamRankingApp.Android
     {
         MatchGenerator gen;
 
-        TextView t1p1;
-        TextView t1p2;
-        TextView t2p1;
-        TextView t2p2;
+        ImageButton t1p1;
+        ImageButton t1p2;
+        ImageButton t2p1;
+        ImageButton t2p2;
 
         Button submit;
+
+        List<Match> matches;//all matches ever chosen
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
-            SetContentView(Resource.Layout.MatchViewer);
+            SetContentView(Resource.Layout.MatchViewer);//set layout
 
-            string json = Intent.GetStringExtra("Players");
+            string json = Intent.GetStringExtra("Players");//get player info from json
             Player[] players = JsonConvert.DeserializeObject<Player[]>(json);
 
             gen = new MatchGenerator(players.ToList());
             matches = new List<Match>();
 
-            t1p1 = FindViewById<TextView>(Resource.Id.matchviewer_T1P1);
-            t1p2 = FindViewById<TextView>(Resource.Id.matchviewer_T1P2);
-            t2p1 = FindViewById<TextView>(Resource.Id.matchviewer_T2P1);
-            t2p2 = FindViewById<TextView>(Resource.Id.matchviewer_T2P2);
+            //get images from layout
+            t1p1 = FindViewById<ImageButton>(Resource.Id.matchviewer_T1P1);
+            t1p2 = FindViewById<ImageButton>(Resource.Id.matchviewer_T1P2);
+            t2p1 = FindViewById<ImageButton>(Resource.Id.matchviewer_T2P1);
+            t2p2 = FindViewById<ImageButton>(Resource.Id.matchviewer_T2P2);
 
-            ThreadPool.QueueUserWorkItem(o => ShowNextMatch());
-
+            //submit button
             submit = FindViewById<Button>(Resource.Id.matchviewer_next);
-            submit.Click += (s, e) => ThreadPool.QueueUserWorkItem(o => ShowNextMatch());
+            submit.Click += (s, e) => ThreadPool.QueueUserWorkItem(o => ShowNextMatch());//get one item onclick
+
+            //start first one manually
+            ThreadPool.QueueUserWorkItem(o => ShowNextMatch());
         }
 
-        List<Match> matches;
-
+        
+        /// <summary>
+        /// Gets next match and updates images
+        /// </summary>
         private void ShowNextMatch()
         {
             Match m = gen.GetMatches(1).First();
@@ -63,15 +69,18 @@ namespace TeamRankingApp.Android
 
             System.Diagnostics.Debug.WriteLine(m);
 
-            RunOnUiThread(()=>ShowMatch(m));
-        }
+            int img_t1p1 = new PlayerView(m.Teams[0].Players[0]).Image;
+            int img_t1p2 = new PlayerView(m.Teams[0].Players[1]).Image;
+            int img_t2p1 = new PlayerView(m.Teams[1].Players[0]).Image;
+            int img_t2p2 = new PlayerView(m.Teams[1].Players[1]).Image;
 
-        private void ShowMatch(Match m)
-        {
-            t1p1.Text = m.Teams[0].Players[0].Name;
-            t1p2.Text = m.Teams[0].Players[1].Name;
-            t2p1.Text = m.Teams[1].Players[0].Name;
-            t2p2.Text = m.Teams[1].Players[1].Name;
+            RunOnUiThread(() =>
+            {
+                t1p1.SetImageResource(img_t1p1);
+                t1p2.SetImageResource(img_t1p2);
+                t2p1.SetImageResource(img_t2p1);
+                t2p2.SetImageResource(img_t2p2);
+            });
         }
     }
 }
