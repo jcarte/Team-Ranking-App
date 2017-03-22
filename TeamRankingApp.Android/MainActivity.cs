@@ -3,7 +3,7 @@ using Android.OS;
 
 namespace TeamRankingApp.Android
 {
-    [Activity(Label = "TeamRankingApp.Android", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
+    [Activity(Label = "Who's Next?", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
     public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
