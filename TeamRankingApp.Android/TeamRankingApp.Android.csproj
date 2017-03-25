@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="MatchViewerActivity.cs" />
+    <Compile Include="NumberScrollView.cs" />
     <Compile Include="PersonAdapter.cs" />
     <Compile Include="PersonView.cs" />
     <Compile Include="PlayerInputActivity.cs" />

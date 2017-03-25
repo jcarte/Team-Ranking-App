@@ -41,18 +41,19 @@ namespace TeamRankingApp.Android
             
             SetContentView(Resource.Layout.MatchViewer);//set layout
 
-            //back button
-            backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
-            RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
-            backBtn.Click += (s, e) => GoToPreviousMatch();
 
-            //submit button
-            nextBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_next);
-            nextBtn.Click += (s, e) => ThreadPool.QueueUserWorkItem(o => GoToNextMatch());//get one item onclick
+            ////back button
+            //backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
+            //RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
+            //backBtn.Click += (s, e) => GoToPreviousMatch();
 
-            //home button
-            homeBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_home);
-            homeBtn.Click += (s, e) => GoHome();
+            ////submit button
+            //nextBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_next);
+            //nextBtn.Click += (s, e) => ThreadPool.QueueUserWorkItem(o => GoToNextMatch());//get one item onclick
+
+            ////home button
+            //homeBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_home);
+            //homeBtn.Click += (s, e) => GoHome();
 
             //get player info from json data
             string json = Intent.GetStringExtra("Players");

@@ -137,14 +137,14 @@ namespace TeamRankingApp.Android
 			// aapt resource value: 0x7f060005
 			public const int matchviewer_T2P2 = 2131099653;
 			
+			// aapt resource value: 0x7f060007
+			public const int matchviewer_home = 2131099655;
+			
 			// aapt resource value: 0x7f060006
-			public const int matchviewer_back = 2131099654;
+			public const int matchviewer_next = 2131099654;
 			
 			// aapt resource value: 0x7f060008
-			public const int matchviewer_home = 2131099656;
-			
-			// aapt resource value: 0x7f060007
-			public const int matchviewer_next = 2131099655;
+			public const int matchviewer_save = 2131099656;
 			
 			// aapt resource value: 0x7f060015
 			public const int playerinput_submit = 2131099669;
