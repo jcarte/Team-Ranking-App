@@ -20,8 +20,12 @@ namespace TeamRankingApp.Android
         private int _value;
 
         public event Action ValueChanged;
-
-        public int Value { get { return _value; } }
+        
+        public int Value
+        {
+            get { return _value; }
+            set { _value = value; numberTxt.Text = _value.ToString(); }
+        }
 
         private TextView numberTxt;
         private TextView up;
@@ -55,14 +59,14 @@ namespace TeamRankingApp.Android
             up.Text = "▲";
             up.Gravity = GravityFlags.Center;
             up.LayoutParameters = new TableLayout.LayoutParams(LayoutParams.MatchParent, 0, 1);
-            up.TextSize = 15f;
+            up.TextSize = 20;
             up.SetTextColor(new Color(252, 74, 26));
             
             numberTxt = new TextView(Context);
             numberTxt.Text = _value.ToString();
             numberTxt.Gravity = GravityFlags.Center;
             numberTxt.LayoutParameters = new TableLayout.LayoutParams(LayoutParams.MatchParent, 0, 2);
-            numberTxt.TextSize = 30f;
+            numberTxt.TextSize = 30;
             numberTxt.SetTextColor(new Color(252, 74, 26));
 
             down = new TextView(Context);
@@ -70,7 +74,7 @@ namespace TeamRankingApp.Android
             down.Text = "▼";
             down.Gravity = GravityFlags.Center;
             down.LayoutParameters = new TableLayout.LayoutParams(LayoutParams.MatchParent, 0, 1);
-            down.TextSize = 15f;
+            down.TextSize = 20;
             down.SetTextColor(new Color(252, 74, 26));
 
             AddView(up);

@@ -3,22 +3,24 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="100px"
+    android:paddingTop="50px"
     android:background="#4ABDAC">
-    <TextView
-        android:text="game 19"
+  <TextView
+        android:id="@+id/game_number" 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:textColor="#DFDCE3"
         android:gravity="center"
-        android:textSize="60dp"
+        android:textSize="30dp"
         android:fontFamily="sans-serif"
+        android:padding="50px"
         />
     <LinearLayout
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_weight="1"
+        android:layout_weight="6"
         android:layout_marginLeft="100px"
         android:layout_marginRight="100px"
         android:layout_marginTop="10dp">
@@ -34,15 +36,17 @@
                 android:id="@+id/matchviewer_T1P1"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
-                android:background="#F7B733"
+                android:background="#F7B733" 
                 android:layout_weight="3"
+                android:padding="5dp"
                 android:scaleType="centerInside" />
-            <TeamRankingApp.Android.NumberScrollView
+          <TeamRankingApp.Android.NumberScrollView
+                android:id="@+id/topScore" 
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:background="#F7B733"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="#F7B733"  
                 android:layout_weight="1"/>
             <ImageButton
                 android:id="@+id/matchviewer_T1P2"
@@ -50,6 +54,7 @@
                 android:layout_width="0dp"
                 android:background="#F7B733"
                 android:layout_weight="3"
+                android:padding="5dp"
                 android:scaleType="centerInside" />
         </LinearLayout>
         <LinearLayout
@@ -66,12 +71,14 @@
                 android:layout_width="0dp"
                 android:background="#F7B733"
                 android:layout_weight="3"
+                android:padding="5dp"
                 android:scaleType="centerInside" />
-            <TeamRankingApp.Android.NumberScrollView
-                android:layout_height="match_parent"
+          <TeamRankingApp.Android.NumberScrollView
+                android:id="@+id/lowerScore"
+                  android:layout_height="match_parent"
                 android:layout_width="0dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:background="#F7B733"
                 android:layout_weight="1"/>          
             <ImageButton
@@ -80,7 +87,8 @@
                 android:layout_width="0dp"
                 android:background="#F7B733"
                 android:layout_weight="3"
-                android:scaleType="centerInside" />
+                android:scaleType="centerInside"
+                android:padding="5dp"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -88,48 +96,46 @@
         android:id="@+id/matchviewer_next"
         android:text="next"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:textColor="#DFDCE3"
         android:gravity="center"
-        android:textSize="100dp"
+        android:textSize="75dp"
         android:fontFamily="sans-serif"
         android:textStyle="bold"
+        android:layout_marginTop="50dp"
         />
 
   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="25dp"
         android:orientation="horizontal"
         android:layout_weight="1"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center">
-        <TextView
+        <ImageButton
             android:id="@+id/matchviewer_home"
-            android:text="⌂"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="#DFDCE3"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="60dp"
-            android:fontFamily="sans-serif"
+            android:src="@drawable/home"
+            android:scaleType="centerInside"
+            android:background="#4abdac"
+            android:layout_margin="5dp"
             />
-        <TextView
+          <ImageButton
             android:id="@+id/matchviewer_save"
-            android:text="✔"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="#DFDCE3"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="60dp"
-            android:fontFamily="sans-serif"
+            android:src="@drawable/save"
+            android:scaleType="centerInside"
+            android:background="#4abdac"
+            android:layout_margin="5dp"
             />
 
     </LinearLayout>
 </LinearLayout>
-
-<!--✓⌂ ✖ ▲ ▼-->

@@ -14,13 +14,16 @@ namespace TeamRankingApp.Android
         {
             base.OnCreate(bundle);
 
+            StartActivity(typeof(Home));
+
             //StartActivity(typeof(PlayerInputActivity));
 
-            List<Player> players = MatchGenerator.GetAllPlayers();
-            Intent i = new Intent(this, typeof(MatchViewerActivity));
-            string json = JsonConvert.SerializeObject(players.ToArray());
-            i.PutExtra("Players", json);
-            StartActivity(i);
+            //List<Player> players = MatchGenerator.GetAllPlayers();
+            //Intent i = new Intent(this, typeof(MatchViewerActivity));
+            //string json = JsonConvert.SerializeObject(players.ToArray());
+            //i.PutExtra("Players", json);
+            //StartActivity(i);
+
         }
     }
 }
