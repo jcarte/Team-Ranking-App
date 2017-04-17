@@ -56,6 +56,11 @@ namespace TeamRankingApp.Android
             homeBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_home);
             homeBtn.Click += (s, e) => GoHome();
 
+            //commit button
+            homeBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_save);
+            homeBtn.Click += (s, e) => CommitResults();
+            
+
 
 
             //get player info from json data
@@ -158,6 +163,12 @@ namespace TeamRankingApp.Android
         {
             StartActivity(typeof(Home));
         }
+
+        private void CommitResults()
+        {
+            StartActivity(typeof(CommitResults));
+        }
+        
 
 
     }
