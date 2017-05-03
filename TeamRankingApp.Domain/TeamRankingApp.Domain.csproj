@@ -69,17 +69,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DataController.cs" />
-    <Compile Include="Data\Game.cs" />
-    <Compile Include="Data\Player.cs" />
-    <Compile Include="Data\Team.cs" />
-    <Compile Include="Match.cs" />
-    <Compile Include="MatchCollection.cs" />
-    <Compile Include="MatchGenerator.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Team.cs" />
+    <Compile Include="GameGenerator.cs" />
+    <Compile Include="OLD\Match.cs" />
+    <Compile Include="OLD\MatchCollection.cs" />
+    <Compile Include="OLD\MatchGenerator.cs" />
+    <Compile Include="OLD\Player.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Team.cs" />
+    <Compile Include="OLD\Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

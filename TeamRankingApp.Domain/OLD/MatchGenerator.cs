@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace TeamRankingApp.Domain
+namespace TeamRankingApp.Domain.OLD
 {
 
     //I provide list of all players from -1- and am given list -2- of useable players
@@ -35,9 +35,7 @@ namespace TeamRankingApp.Domain
 
             return players;
         }
-
-
-
+        
         //Players in this session ready to be matched - this has been passed from the front end
         private List<Player> activePlayers;
         private MatchCollection chosenMatches;
@@ -64,8 +62,6 @@ namespace TeamRankingApp.Domain
             this.allMatches = GetAllMatches(allTeams, activePlayers);
         }
         
-
-
         // -3-
 
         /// <summary>
@@ -135,9 +131,7 @@ namespace TeamRankingApp.Domain
             return newMatches;
 
         }
-
         
-
         private List<Team> GetAllTeams(List<Player> players)
         {
 

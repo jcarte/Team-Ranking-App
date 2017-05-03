@@ -3,10 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TeamRankingApp.Domain.Data
+namespace TeamRankingApp.Domain
 {
-    public class DataController
+    public class Database
     {
+
+
+        //TODO give to front end
+        private const string DB_FILE_NAME = "teamdb.db3";
+        private static string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), DB_FILE_NAME);
+
+
+
+
         SQLiteConnection db;
 
         /// <summary>
@@ -14,7 +23,7 @@ namespace TeamRankingApp.Domain.Data
         /// </summary>
         public string FilePath { get; }
 
-        public DataController(string path)
+        public Database(string path)
         {
             this.FilePath = path;
         }

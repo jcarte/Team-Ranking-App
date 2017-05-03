@@ -1,7 +1,7 @@
 ﻿using SQLite;
 using System;
 
-namespace TeamRankingApp.Domain.Data
+namespace TeamRankingApp.Domain
 {
     /// <summary>
     /// The results of a single game where two teams play against each other
