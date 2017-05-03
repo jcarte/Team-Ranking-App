@@ -104,7 +104,7 @@ namespace TeamRankingApp.Domain.Data
             string[] names = new string[] {"Guy","James","Luca","Martin","Megan","Neil","Nicola","Rick"};
             foreach (string n in names)
             {
-                players.Add(Player.Create(n));
+                players.Add(Player.Create(n,n + ".png"));//todo check image path is right
             }
             db.InsertAll(players);
 

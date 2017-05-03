@@ -13,6 +13,9 @@ namespace TeamRankingApp.Domain.Data
         [MaxLength(255)]
         public string Name { get; set; }
 
+
+        public string ImagePath { get; set; }
+
         /// <summary>
         /// Number of games played
         /// </summary>
@@ -38,11 +41,12 @@ namespace TeamRankingApp.Domain.Data
         public int SumPointsAgainst { get; set; }
 
 
-        public static Player Create(string name)
+        public static Player Create(string name, string imagePath)
         {
             return new Player()
             {
-                Name = name
+                Name = name,
+                ImagePath = imagePath
             };
         }
 
