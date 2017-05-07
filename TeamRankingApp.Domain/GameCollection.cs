@@ -49,6 +49,13 @@ namespace TeamRankingApp.Domain
             return FinalGameList.Count - FinalGameList.LastIndexOf(tm) - 1;
         }
 
+        //Method 4 - the number of games played in the session so far
+
+        public int IndividualTotalGamesPlayed(Player p)
+        {
+            return FinalGameList.Count(g=>g.ContainsPlayer(p));
+        }
+
         public void AddGame(Game g)
         {
             FinalGameList.Add(g);
