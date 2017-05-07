@@ -38,6 +38,16 @@ namespace TeamRankingApp.Domain
         [Ignore]
         public List<Player> OffCourtPlayers { get; set; }
 
+        public Game() { }
+
+
+
+        public static Game Create(Team t1, int t1Score, Team t2, int t2Score)
+        {
+            return Create(t1, t1Score, t2, t2Score, new List<Player>());
+        }
+
+
         /// <summary>
         /// Static creator
         /// </summary>

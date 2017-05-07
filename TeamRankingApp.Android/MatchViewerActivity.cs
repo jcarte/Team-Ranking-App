@@ -27,8 +27,9 @@ namespace TeamRankingApp.Android
         ImageButton t2p1;
         ImageButton t2p2;
 
-        ImageButton nextBtn;
-        ImageButton backBtn;
+        TextView nextBtn;
+        
+        //ImageButton backBtn;
         ImageButton homeBtn;
 
         int matchNumber = 0;//current match number (non 0 based)
@@ -46,17 +47,29 @@ namespace TeamRankingApp.Android
             db.Load();
 
             //back button
-            backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
-            RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
-            backBtn.Click += (s, e) => GoToPreviousMatch();
+            //backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
+            //RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
+            //backBtn.Click += (s, e) => GoToPreviousMatch();
 
-            //submit button
-            nextBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_next);
+            ////back button
+            //backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
+            //RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
+            //backBtn.Click += (s, e) => GoToPreviousMatch();
+
+            ////submit button
+            nextBtn = FindViewById<TextView>(Resource.Id.matchviewer_next);
             nextBtn.Click += (s, e) => ThreadPool.QueueUserWorkItem(o => GoToNextMatch());//get one item onclick
 
             //home button
             homeBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_home);
             homeBtn.Click += (s, e) => GoHome();
+
+            //commit button
+            homeBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_save);
+            homeBtn.Click += (s, e) => CommitResults();
+            
+
+
 
             //get player info from json data
             string json = Intent.GetStringExtra("Players");
@@ -96,17 +109,17 @@ namespace TeamRankingApp.Android
         /// <summary>
         /// goes back to the previous match if it can
         /// </summary>
-        private void GoToPreviousMatch()
-        {
-            if (matchNumber > 1)
-            {
-                matchNumber--;
-                UpdateImages(matches[matchNumber - 1]);
-            }
+        //private void GoToPreviousMatch()
+        //{
+        //    if (matchNumber > 1)
+        //    {
+        //        matchNumber--;
+        //        UpdateImages(matches[matchNumber - 1]);
+        //    }
 
-            if(matchNumber == 1)
-                RunOnUiThread(()=>backBtn.Visibility = ViewStates.Invisible);
-        }
+        //    if(matchNumber == 1)
+        //        RunOnUiThread(()=>backBtn.Visibility = ViewStates.Invisible);
+        //}
 
 
         /// <summary>
@@ -122,19 +135,33 @@ namespace TeamRankingApp.Android
                 //System.Diagnostics.Debug.WriteLine("GET NEW MATCH");
                 m = gen.GetGames(1).First();
                 matches.Add(m);
+                //TODO save current score to something before reset
+
+                RunOnUiThread(()=>
+                {
+                    FindViewById<NumberScrollView>(Resource.Id.topScore).Value = 0;
+                    FindViewById<NumberScrollView>(Resource.Id.lowerScore).Value = 0;
+                });
+
             }
             else
             {
                 //System.Diagnostics.Debug.WriteLine("GET OLD MATCH");
+                //TODO set this to load the correct score of the match if going back to previous match
                 m = matches[matchNumber - 1];
             }
 
-            if (matchNumber > 1)
-                RunOnUiThread(() => backBtn.Visibility = ViewStates.Visible);
+            //if (matchNumber > 1)
+            //    RunOnUiThread(() => backBtn.Visibility = ViewStates.Visible);
 
             System.Diagnostics.Debug.WriteLine(m);
 
             UpdateImages(m);
+
+
+            RunOnUiThread(() => FindViewById<TextView>(Resource.Id.game_number).Text = ("game " + matchNumber.ToString()));
+            
+            
         }
 
 
@@ -160,9 +187,34 @@ namespace TeamRankingApp.Android
         /// </summary>
         private void GoHome()
         {
-            StartActivity(typeof(PlayerInputActivity));
+            StartActivity(typeof(Home));
         }
 
+        private void CommitResults()
+        {
+            //remove any zero score matches
+            List <Game>  matchesforsave;
+            matchesforsave = matches;
+
+
+            List<GameViewModel> gvms = matchesforsave.Select(m => new GameViewModel()
+            {
+                Team1ID = m.Team1ID,
+                Team1Score = m.Team1Score,
+                Team2ID = m.Team2ID,
+                Team2Score = m.Team2Score
+            }).ToList();
+
+            matchesforsave = matches.Where(m => m.Team1Score == 0 && m.Team2Score == 0).ToList();
+
+            Intent i = new Intent(this, typeof(CommitResults));//launch match viewer screen
+            string json = JsonConvert.SerializeObject(gvms);//convert all selected matches to JSON text
+            i.PutExtra("Matches", json);//send JSON text to activity
+            StartActivity(i);
+
+        }
+        
+     
 
     }
 }

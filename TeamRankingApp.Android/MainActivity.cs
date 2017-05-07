@@ -1,5 +1,9 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using TeamRankingApp.Domain;
 
 namespace TeamRankingApp.Android
 {
@@ -10,16 +14,12 @@ namespace TeamRankingApp.Android
         {
             base.OnCreate(bundle);
 
-            StartActivity(typeof(PlayerInputActivity));
+            StartActivity(typeof(Home));
 
+            //StartActivity(typeof(PlayerInputActivity));
 
             //List<Player> players = MatchGenerator.GetAllPlayers();
-
-            ////IList<Integer> playInts = players.Select(p => (Integer)p.PlayerID).ToList();
-
             //Intent i = new Intent(this, typeof(MatchViewerActivity));
-            ////i.PutIntegerArrayListExtra("Players", playInts);
-
             //string json = JsonConvert.SerializeObject(players.ToArray());
             //i.PutExtra("Players", json);
             //StartActivity(i);

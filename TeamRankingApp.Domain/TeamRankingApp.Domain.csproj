@@ -75,13 +75,8 @@
     <Compile Include="Player.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="GameGenerator.cs" />
-    <Compile Include="OLD\Match.cs" />
-    <Compile Include="OLD\MatchCollection.cs" />
-    <Compile Include="OLD\MatchGenerator.cs" />
-    <Compile Include="OLD\Player.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OLD\Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
