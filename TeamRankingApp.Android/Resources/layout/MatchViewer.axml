@@ -112,7 +112,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center">
-      <ImageButton
+        <ImageButton
             android:id="@+id/matchviewer_back"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

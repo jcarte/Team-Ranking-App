@@ -50,12 +50,20 @@ namespace TeamRankingApp.Android
             //this show how to render an individual row in the custom list
             Game m = matches[position];
             //TODO: update s1 and s2 to be the scores passed from backend once available
-            string s1 = "1";
-            string s2 = "11";
-            string p1 = "Guy";
-            string p2 = "James";
-            string p3 = "Megan";
-            string p4 = "Nicola";
+            //string s1 = "1";
+            //string s2 = "11";
+            //string p1 = "Guy";
+            //string p2 = "James";
+            //string p3 = "Megan";
+            //string p4 = "Nicola";
+
+            string s1 = m.Team1Score.ToString();
+            string s2 = m.Team2Score.ToString();
+            string p1 = m.Team1.Player1.Name;
+            string p2 = m.Team1.Player2.Name;
+            string p3 = m.Team2.Player1.Name;
+            string p4 = m.Team2.Player2.Name;
+
 
             //make 4 images depending on players
             int Image1 = GetImageFromName(p1);
