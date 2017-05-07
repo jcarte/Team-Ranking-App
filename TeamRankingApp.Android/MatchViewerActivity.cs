@@ -155,7 +155,7 @@ namespace TeamRankingApp.Android
                 {
                     System.Diagnostics.Debug.WriteLine("GET NEW MATCH");
                     g = gen.GetGames(1).First();
-                    matches.Add(currentMatch);
+                    matches.Add(g);
 
                 }
                 else
