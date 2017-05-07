@@ -1,5 +1,7 @@
 ﻿using SQLite;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TeamRankingApp.Domain
 {
@@ -30,6 +32,10 @@ namespace TeamRankingApp.Domain
         [Ignore]
         public Team Team2 { get; set; }
 
+        [Ignore]
+        public Team[] Teams { get { return new Team[] { Team1, Team2 }; } }
+
+        public List<Player> OffCourtPlayers { get; set; }
 
         /// <summary>
         /// Static creator
@@ -39,7 +45,7 @@ namespace TeamRankingApp.Domain
         /// <param name="t2"></param>
         /// <param name="t2Score"></param>
         /// <returns></returns>
-        public static Game Create(Team t1, int t1Score, Team t2, int t2Score)
+        public static Game Create(Team t1, int t1Score, Team t2, int t2Score, List<Player> allPlayers)
         {
             return new Game()
             {
@@ -49,7 +55,8 @@ namespace TeamRankingApp.Domain
                 Team2ID = t2.TeamID,
                 Team2Score = t2Score,
                 Team1 = t1,
-                Team2 = t2
+                Team2 = t2,
+                OffCourtPlayers = allPlayers.Except(t1.Players.Union(t2.Players)).ToList()
             };
         }
 
@@ -124,6 +131,39 @@ namespace TeamRankingApp.Domain
                 return Team2Score > Team1Score;
         }
 
+
+        public override bool Equals(object obj)
+        {
+            return (Game)obj == this;
+        }
+        public override int GetHashCode()
+        {
+            return (int)Math.Pow(Team1ID.GetHashCode(), Team2ID.GetHashCode());
+        }
+
+        //Does this break database logic?
+        public static bool operator ==(Game a, Game b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return b.Teams.Contains(a.Teams[0]) && b.Teams.Contains(a.Teams[1]);
+        }
+
+        public static bool operator !=(Game a, Game b)
+        {
+            return !(a == b);
+        }
 
         public override string ToString()
         {

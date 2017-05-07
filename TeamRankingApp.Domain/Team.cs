@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System.Collections.Generic;
 
 namespace TeamRankingApp.Domain
 {
@@ -19,7 +20,11 @@ namespace TeamRankingApp.Domain
 
         [Ignore]
         public Player Player2 { get; set; }
-        
+
+        [Ignore]
+        public Player[] Players { get { return new Player[] { Player1, Player2 }; } }
+
+
         /// <summary>
         /// Number of games played
         /// </summary>
@@ -56,12 +61,34 @@ namespace TeamRankingApp.Domain
 
         public static Team Create(Player p1, Player p2)//TODO force in id order?
         {
-            return new Data.Team()
+            return new Team()
             {
                 Player1ID = p1.PlayerID,
                 Player2ID = p2.PlayerID
             };
         }
+
+        public static bool operator ==(Team a, Team b)
+        {
+            return (a.TeamID == b.TeamID);
+        }
+
+        public static bool operator !=(Team a, Team b)
+        {
+            return !(a.TeamID == b.TeamID);
+        }
+
+        //generic not used in project
+        public override bool Equals(object obj)
+        {
+            return (Team)obj == this;
+        }
+        //generic not used in project
+        public override int GetHashCode()
+        {
+            return this.TeamID;
+        }
+
 
         public override string ToString()
         {

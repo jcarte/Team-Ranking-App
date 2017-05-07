@@ -20,7 +20,7 @@ namespace TeamRankingApp.Android
     [Activity(Label = "Matches", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
     public class MatchViewerActivity : Activity
     {
-        MatchGenerator gen;
+        GameGenerator gen;
 
         ImageButton t1p1;
         ImageButton t1p2;
@@ -33,13 +33,17 @@ namespace TeamRankingApp.Android
 
         int matchNumber = 0;//current match number (non 0 based)
 
-        List<Match> matches;//all matches ever chosen
+        List<Game> matches;//all matches ever chosen
+
+        Database db = new Database();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             
             SetContentView(Resource.Layout.MatchViewer);//set layout
+
+            db.Load();
 
             //back button
             backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
@@ -58,8 +62,17 @@ namespace TeamRankingApp.Android
             string json = Intent.GetStringExtra("Players");
             Player[] players = JsonConvert.DeserializeObject<Player[]>(json);
 
-            gen = new MatchGenerator(players.ToList());
-            matches = new List<Match>();
+            List<Team> teams = new List<Team>();
+
+            foreach (Player p in players)
+            {
+                teams.AddRange(db.GetTeams().Where(t => t.ContainsPlayer(p)));
+            }
+
+            teams = teams.Distinct().ToList();
+
+            gen = new GameGenerator(players.ToList(),teams);
+            matches = new List<Game>();
 
             //get images from layout
             t1p1 = FindViewById<ImageButton>(Resource.Id.matchviewer_T1P1);
@@ -93,12 +106,12 @@ namespace TeamRankingApp.Android
         private void GoToNextMatch()
         {
             matchNumber++;
-            Match m;
+            Game m;
 
             if (matches.Count < matchNumber)
             {
                 //System.Diagnostics.Debug.WriteLine("GET NEW MATCH");
-                m = gen.GetMatches(1).First();
+                m = gen.GetGames(1).First();
                 matches.Add(m);
             }
             else
@@ -117,7 +130,7 @@ namespace TeamRankingApp.Android
 
 
 
-        private void UpdateImages(Match m)
+        private void UpdateImages(Game m)
         {
             int img_t1p1 = new PlayerView(m.Teams[0].Players[0]).Image;
             int img_t1p2 = new PlayerView(m.Teams[0].Players[1]).Image;

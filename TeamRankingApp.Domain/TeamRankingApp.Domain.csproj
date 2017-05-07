@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameCollection.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="GameGenerator.cs" />

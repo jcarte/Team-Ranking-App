@@ -1,20 +1,22 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace TeamRankingApp.Domain
 {
     public class Database
     {
-
-
         //TODO give to front end
         private const string DB_FILE_NAME = "teamdb.db3";
         private static string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), DB_FILE_NAME);
 
 
-
+        public Database()
+        {
+            this.FilePath = dbPath;
+        }
 
         SQLiteConnection db;
 
