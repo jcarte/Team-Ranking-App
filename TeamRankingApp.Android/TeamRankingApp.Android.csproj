@@ -58,6 +58,7 @@
     <Compile Include="CommitResults.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MatchConfirmAdapter.cs" />
     <Compile Include="MatchViewerActivity.cs" />
     <Compile Include="NumberScrollView.cs" />
     <Compile Include="PersonAdapter.cs" />
@@ -82,7 +83,10 @@
     <AndroidResource Include="Resources\layout\Home.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Confirm.axml">
+    <AndroidResource Include="Resources\layout\ConfirmSave.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CustomMatchResultsRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

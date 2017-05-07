@@ -166,10 +166,20 @@ namespace TeamRankingApp.Android
 
         private void CommitResults()
         {
-            StartActivity(typeof(CommitResults));
+            //remove any zero score matches
+            List <Match>  matchesforsave;
+            matchesforsave = matches;
+            //TODO: Need to uncomment this line when score is available from backend
+            //matchesforsave = matches.Where(m => m.Score1 == 0 && m.Score2 == 0).ToList();
+
+            Intent i = new Intent(this, typeof(CommitResults));//launch match viewer screen
+            string json = JsonConvert.SerializeObject(matchesforsave.ToArray());//convert all selected matches to JSON text
+            i.PutExtra("Matches", json);//send JSON text to activity
+            StartActivity(i);
+
         }
         
-
+     
 
     }
 }
