@@ -29,14 +29,16 @@ namespace TeamRankingApp.Android
 
         TextView nextBtn;
         
-        //ImageButton backBtn;
+        ImageButton backBtn;
         ImageButton homeBtn;
 
         int matchNumber = 0;//current match number (non 0 based)
 
         List<Game> matches;//all matches ever chosen
+        Game currentMatch = null;
 
         Database db = new Database();
+        bool isGettingNextMatch = false;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,14 +49,10 @@ namespace TeamRankingApp.Android
             db.Load();
 
             //back button
-            //backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
-            //RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
-            //backBtn.Click += (s, e) => GoToPreviousMatch();
+            backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
+            RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
+            backBtn.Click += (s, e) => GoToPreviousMatch();
 
-            ////back button
-            //backBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_back);
-            //RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);//make invisible
-            //backBtn.Click += (s, e) => GoToPreviousMatch();
 
             ////submit button
             nextBtn = FindViewById<TextView>(Resource.Id.matchviewer_next);
@@ -67,17 +65,29 @@ namespace TeamRankingApp.Android
             //commit button
             homeBtn = FindViewById<ImageButton>(Resource.Id.matchviewer_save);
             homeBtn.Click += (s, e) => CommitResults();
-            
 
+            //score scrollers
+            NumberScrollView team1ScoreLabel = FindViewById<NumberScrollView>(Resource.Id.topScore);
+            NumberScrollView team2ScoreLabel = FindViewById<NumberScrollView>(Resource.Id.lowerScore);
+            team1ScoreLabel.ValueChanged += () =>
+            {
+                if (!isGettingNextMatch)
+                { currentMatch.Team1Score = team1ScoreLabel.Value; }
+            };
+
+            team2ScoreLabel.ValueChanged += () =>
+            {
+                if (!isGettingNextMatch)
+                { currentMatch.Team2Score = team2ScoreLabel.Value; }
+            };
 
 
             //get player info from json data
             string json = Intent.GetStringExtra("Players");
             Player[] players = JsonConvert.DeserializeObject<Player[]>(json);
 
+            //get all teams which are valid for selected players
             List<Team> teams = new List<Team>();
-
-
             foreach (Team t in db.GetTeams())
             {
                 if(t.Players.Except(players).Count()==0)
@@ -85,13 +95,6 @@ namespace TeamRankingApp.Android
                     teams.Add(t);
                 }
             }
-
-            //foreach (Player p in players)
-            //{
-            //    teams.AddRange(db.GetTeams().Where(t => t.ContainsPlayer(p)));
-            //}
-
-            //teams = teams.Distinct().ToList();
 
             gen = new GameGenerator(players.ToList(),teams);
             matches = new List<Game>();
@@ -109,17 +112,30 @@ namespace TeamRankingApp.Android
         /// <summary>
         /// goes back to the previous match if it can
         /// </summary>
-        //private void GoToPreviousMatch()
-        //{
-        //    if (matchNumber > 1)
-        //    {
-        //        matchNumber--;
-        //        UpdateImages(matches[matchNumber - 1]);
-        //    }
+        private void GoToPreviousMatch()
+        {
+            if(!isGettingNextMatch)
+            {
+                matchNumber--;
+                Game g = matches[matchNumber - 1];
+                currentMatch = null;
+                currentMatch = g;
 
-        //    if(matchNumber == 1)
-        //        RunOnUiThread(()=>backBtn.Visibility = ViewStates.Invisible);
-        //}
+                UpdateImages(currentMatch);
+                RunOnUiThread(() =>
+                {
+                    FindViewById<NumberScrollView>(Resource.Id.topScore).Value = currentMatch.Team1Score;
+                    FindViewById<NumberScrollView>(Resource.Id.lowerScore).Value = currentMatch.Team2Score;
+                });
+                
+                RunOnUiThread(() => FindViewById<TextView>(Resource.Id.game_number).Text = ("game " + matchNumber.ToString()));
+
+                if (matchNumber == 1)
+                {
+                    RunOnUiThread(() => backBtn.Visibility = ViewStates.Invisible);
+                }
+            }
+        }
 
 
         /// <summary>
@@ -127,41 +143,49 @@ namespace TeamRankingApp.Android
         /// </summary>
         private void GoToNextMatch()
         {
-            matchNumber++;
-            Game m;
 
-            if (matches.Count < matchNumber)
+            if (!isGettingNextMatch)
             {
-                //System.Diagnostics.Debug.WriteLine("GET NEW MATCH");
-                m = gen.GetGames(1).First();
-                matches.Add(m);
-                //TODO save current score to something before reset
+                isGettingNextMatch = true;
+                matchNumber++;
 
-                RunOnUiThread(()=>
+                Game g;
+
+                if (matches.Count < matchNumber)
                 {
-                    FindViewById<NumberScrollView>(Resource.Id.topScore).Value = 0;
-                    FindViewById<NumberScrollView>(Resource.Id.lowerScore).Value = 0;
+                    System.Diagnostics.Debug.WriteLine("GET NEW MATCH");
+                    g = gen.GetGames(1).First();
+                    matches.Add(currentMatch);
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("GET OLD MATCH");
+                    g = matches[matchNumber - 1];
+                }
+
+                currentMatch = null;
+                currentMatch = g;
+
+                UpdateImages(currentMatch);
+
+                RunOnUiThread(() =>
+                {
+                    FindViewById<NumberScrollView>(Resource.Id.topScore).Value = currentMatch.Team1Score;
+                    FindViewById<NumberScrollView>(Resource.Id.lowerScore).Value = currentMatch.Team2Score;
                 });
 
+                if (matchNumber > 1)
+                {
+                    RunOnUiThread(() => backBtn.Visibility = ViewStates.Visible);
+                }
+
+                System.Diagnostics.Debug.WriteLine(currentMatch);
+
+                RunOnUiThread(() => FindViewById<TextView>(Resource.Id.game_number).Text = ("game " + matchNumber.ToString()));
+
+                isGettingNextMatch = false;
             }
-            else
-            {
-                //System.Diagnostics.Debug.WriteLine("GET OLD MATCH");
-                //TODO set this to load the correct score of the match if going back to previous match
-                m = matches[matchNumber - 1];
-            }
-
-            //if (matchNumber > 1)
-            //    RunOnUiThread(() => backBtn.Visibility = ViewStates.Visible);
-
-            System.Diagnostics.Debug.WriteLine(m);
-
-            UpdateImages(m);
-
-
-            RunOnUiThread(() => FindViewById<TextView>(Resource.Id.game_number).Text = ("game " + matchNumber.ToString()));
-            
-            
         }
 
 
