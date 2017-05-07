@@ -21,6 +21,7 @@ namespace TeamRankingApp.Android
 
         ImageButton btnBack;
         ImageButton btnCommit;
+        List<Game> matches;
 
         Database db;
 
@@ -40,7 +41,7 @@ namespace TeamRankingApp.Android
             List<GameViewModel> gvms = JsonConvert.DeserializeObject<List<GameViewModel>>(json);
 
             List<Team> teams = db.GetTeams();
-            List<Game> matches = gvms.Select(g =>
+            matches = gvms.Select(g =>
                 Game.Create(teams.First(t => t.TeamID == g.Team1ID), g.Team1Score, teams.First(t => t.TeamID == g.Team2ID), g.Team2Score)
             ).ToList();
 
