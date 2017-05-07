@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="50px"
+    android:background="#4ABDAC">
+  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="left">
+    <ImageButton
+        android:id="@+id/teamstats_player1_img"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/Guy"
+        android:scaleType="centerInside"
+        android:background="#4abdac"
+        android:layout_margin="5dp"
+            />
+    <ImageButton
+      android:id="@+id/teamstats_player2_img"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:src="@drawable/James"
+      android:scaleType="centerInside"
+      android:background="#4abdac"
+      android:layout_margin="5dp"
+            />
+
+  </LinearLayout>
+  
+  <LinearLayout
+      android:layout_height="0dp"
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:layout_weight="6"
+      android:layout_marginLeft="100px"
+      android:layout_marginRight="100px"
+      android:layout_marginTop="10dp">
+
+<!--place team stats here-->
+  </LinearLayout>
+
+
+
+  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center">
+    <ImageButton
+        android:id="@+id/teamstats_back"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/back"
+        android:scaleType="centerInside"
+        android:background="#4abdac"
+        android:layout_margin="5dp"
+            />
+    <ImageButton
+      android:id="@+id/teamstats_home"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:src="@drawable/home"
+      android:scaleType="centerInside"
+      android:background="#4abdac"
+      android:layout_margin="5dp"
+            />
+
+  </LinearLayout>
+</LinearLayout>
