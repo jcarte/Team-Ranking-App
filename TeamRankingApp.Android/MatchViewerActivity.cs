@@ -173,7 +173,7 @@ namespace TeamRankingApp.Android
             //matchesforsave = matches.Where(m => m.Score1 == 0 && m.Score2 == 0).ToList();
 
             Intent i = new Intent(this, typeof(CommitResults));//launch match viewer screen
-            string json = JsonConvert.SerializeObject(matchesforsave.ToArray());//convert all selected matches to JSON text
+            string json = JsonConvert.SerializeObject(matchesforsave);//convert all selected matches to JSON text
             i.PutExtra("Matches", json);//send JSON text to activity
             StartActivity(i);
 
