@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace TeamRankingApp.Domain
 {
+    //Install-Package sqlite-net-pcl
     public class Database
     {
         //TODO give to front end
@@ -32,6 +33,13 @@ namespace TeamRankingApp.Domain
 
         public void Load()
         { 
+            //TODO remove
+            if(File.Exists(FilePath))
+            {
+                File.Delete(FilePath);
+            }
+            
+
             if(string.IsNullOrWhiteSpace(FilePath))
             {
                 throw new ArgumentException("No database file path given");
@@ -44,6 +52,12 @@ namespace TeamRankingApp.Domain
             db.CreateTable<Player>();
             db.CreateTable<Team>();
             db.CreateTable<Game>();
+
+            //todo remove
+            if(!db.Table<Player>().Any())
+            {
+                InsertDefaults();
+            }
         }
 
         public List<Player> GetPlayers()
@@ -124,7 +138,7 @@ namespace TeamRankingApp.Domain
             {
                 foreach (Player p2 in players)
                 {
-                    if(p1.PlayerID != p2.PlayerID)
+                    if(p1.PlayerID < p2.PlayerID)
                     {
                         teams.Add(Team.Create(p1, p2));
                     }

@@ -50,6 +50,29 @@ namespace TeamRankingApp.Domain
             };
         }
 
+
+        public static bool operator ==(Player a, Player b)
+        {
+            return (a.PlayerID == b.PlayerID);
+        }
+
+        public static bool operator !=(Player a, Player b)
+        {
+            return !(a.PlayerID == b.PlayerID);
+        }
+
+        //generic not used in project
+        public override bool Equals(object obj)
+        {
+            return (Player)obj == this;
+        }
+        //generic not used in project
+        public override int GetHashCode()
+        {
+            return this.PlayerID;
+        }
+
+
         public override string ToString()
         {
             return Name;

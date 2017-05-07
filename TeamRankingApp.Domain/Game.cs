@@ -35,6 +35,7 @@ namespace TeamRankingApp.Domain
         [Ignore]
         public Team[] Teams { get { return new Team[] { Team1, Team2 }; } }
 
+        [Ignore]
         public List<Player> OffCourtPlayers { get; set; }
 
         /// <summary>

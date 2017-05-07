@@ -64,12 +64,21 @@ namespace TeamRankingApp.Android
 
             List<Team> teams = new List<Team>();
 
-            foreach (Player p in players)
+
+            foreach (Team t in db.GetTeams())
             {
-                teams.AddRange(db.GetTeams().Where(t => t.ContainsPlayer(p)));
+                if(t.Players.Except(players).Count()==0)
+                {
+                    teams.Add(t);
+                }
             }
 
-            teams = teams.Distinct().ToList();
+            //foreach (Player p in players)
+            //{
+            //    teams.AddRange(db.GetTeams().Where(t => t.ContainsPlayer(p)));
+            //}
+
+            //teams = teams.Distinct().ToList();
 
             gen = new GameGenerator(players.ToList(),teams);
             matches = new List<Game>();

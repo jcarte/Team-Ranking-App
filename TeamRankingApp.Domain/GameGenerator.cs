@@ -43,7 +43,7 @@ namespace TeamRankingApp.Domain
                     int j = r.Next(0, len - 1);
                     Game m = Games[j];
                     chosenGames.AddGame(m);
-                    Games.Add(m);
+                    newGames.Add(m);
                 }
                 else
                 {
@@ -55,15 +55,21 @@ namespace TeamRankingApp.Domain
                         int mScore = chosenGames.MatchConsecutiveNotPlayed(m);
 
                         //score for teams
-                        int t1 = (int)Math.Pow(chosenGames.TeamConsecutiveOffCourt(m.Teams[0]), 2);
-                        int t2 = (int)Math.Pow(chosenGames.TeamConsecutiveOffCourt(m.Teams[1]), 2);
+                        //int t1 = (int)Math.Pow(chosenGames.TeamConsecutiveOffCourt(m.Teams[0]), 2);
+                        //int t2 = (int)Math.Pow(chosenGames.TeamConsecutiveOffCourt(m.Teams[1]), 2);
+                        int t1 = (int)Math.Pow(chosenGames.TeamConsecutiveOffCourt(m.Teams[0])*2, 1);
+                        int t2 = (int)Math.Pow(chosenGames.TeamConsecutiveOffCourt(m.Teams[1])*2, 1);
                         int tScore = t1 + t2;
 
                         //scores for individuals
-                        int p1 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[0].Players[0]), 4);
-                        int p2 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[0].Players[1]), 4);
-                        int p3 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[1].Players[0]), 4);
-                        int p4 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[1].Players[1]), 4);
+                        //int p1 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[0].Players[0]), 4);
+                        //int p2 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[0].Players[1]), 4);
+                        //int p3 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[1].Players[0]), 4);
+                        //int p4 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[1].Players[1]), 4);
+                        int p1 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[0].Players[0]) * 2, 2);
+                        int p2 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[0].Players[1]) * 2, 2);
+                        int p3 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[1].Players[0]) * 2, 2);
+                        int p4 = (int)Math.Pow(chosenGames.IndividualConsecutiveOffCourt(m.Teams[1].Players[1]) * 2, 2);
                         int iScore = p1 + p2 + p3 + p4;
 
                         //add all scores together to get final score
