@@ -29,12 +29,18 @@ namespace TeamRankingApp.Android
         List<Player> allPlayers;
         List<Player> selectedPlayers;
 
+        Database db;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.PlayerInput);
 
-            allPlayers = MatchGenerator.GetAllPlayers();
+
+            db = new Database();
+            db.Load();
+
+            allPlayers = db.GetPlayers();
             selectedPlayers = new List<Player>();
 
             //get all image buttons
