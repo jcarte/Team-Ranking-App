@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System.IO;
+using TeamRankingApp.Domain.Data;
+using TeamRankingApp.Domain.Models;
 
 namespace TeamRankingApp.Domain
 {
@@ -18,7 +11,7 @@ namespace TeamRankingApp.Domain
 
         public List<Player> Players { get; }
         public List<Team> Teams { get; }
-        private List<Game> Games;
+        private List<GameModel> AllGames; //all possible games
 
         private GameCollection chosenGames;
 
@@ -27,29 +20,29 @@ namespace TeamRankingApp.Domain
             Players = players;
             Teams = teams;
             chosenGames = new GameCollection();
-            Games = GetAllGames(teams, players);//TODO move to init?
+            AllGames = GetAllGames(teams, players);//TODO move to init?
         }
 
-        public List<Game> GetGames(int n)
+        public List<GameModel> GetGames(int n)
         {
-            List<Game> newGames = new List<Game>();
+            List<GameModel> newGames = new List<GameModel>();
             for (int i = 0; i < n; i++)
             {
                 if (chosenGames.FinalGameList.Count == 0)
                 {
                     //set first match randomly
-                    int len = Games.Count;
+                    int len = AllGames.Count;
                     Random r = new Random();
                     int j = r.Next(0, len - 1);
-                    Game m = Games[j];
+                    GameModel m = AllGames[j].Clone();
                     chosenGames.AddGame(m);
                     newGames.Add(m);
                 }
                 else
                 {
-                    List<Tuple<int, Game>> matchRankScore = new List<Tuple<int, Game>>();
+                    List<Tuple<int, GameModel>> matchRankScore = new List<Tuple<int, GameModel>>();
 
-                    foreach (Game m in Games)
+                    foreach (GameModel m in AllGames)
                     {
                         //score for match
                         int mScore = chosenGames.MatchConsecutiveNotPlayed(m);
@@ -76,12 +69,12 @@ namespace TeamRankingApp.Domain
                         //add all scores together to get final score
                         int rankingScore = mScore + tScore + iScore - gScore;
 
-                        Tuple<int, Game> tup = new Tuple<int, Game>(rankingScore, m);
+                        Tuple<int, GameModel> tup = new Tuple<int, GameModel>(rankingScore, m);
                         matchRankScore.Add(tup);
                     }
 
                     matchRankScore = matchRankScore.OrderByDescending(m => m.Item1).ToList();
-                    Game cm = matchRankScore.First().Item2;
+                    GameModel cm = matchRankScore.First().Item2.Clone();
                     chosenGames.AddGame(cm);
                     newGames.Add(cm);
 
@@ -95,10 +88,10 @@ namespace TeamRankingApp.Domain
         }
 
 
-        private List<Game> GetAllGames(List<Team> allTeams, List<Player> allPlayers)
+        private List<GameModel> GetAllGames(List<Team> allTeams, List<Player> allPlayers)
         {
 
-            List<Game> ml = new List<Game>();
+            List<GameModel> ml = new List<GameModel>();
 
             //loop through players from i= 0 to len
             for (int i = 0; i < allTeams.Count; i++)
@@ -110,7 +103,7 @@ namespace TeamRankingApp.Domain
                     Team B = allTeams[j];
                     if (A.Players.Union(B.Players).Distinct().Count() == 4)//only add matches with 4 distinct players
                     {
-                        Game m = Game.Create(A,0, B, 0,allPlayers);
+                        GameModel m = GameModel.Create(A,0, B, 0,allPlayers);
                         ml.Add(m);
                     }
                 }

@@ -82,13 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommitResults.cs" />
-    <Compile Include="GameViewModel.cs" />
     <Compile Include="Home.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MatchConfirmAdapter.cs" />
     <Compile Include="MatchViewerActivity.cs" />
     <Compile Include="NumberScrollView.cs" />
-    <Compile Include="PersonAdapter.cs" />
     <Compile Include="PersonView.cs" />
     <Compile Include="PlayerInputActivity.cs" />
     <Compile Include="PlayerView.cs" />

@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using TeamRankingApp.Domain;
 using Newtonsoft.Json;
+using TeamRankingApp.Domain.Models;
+using TeamRankingApp.Domain.Data;
 
 namespace TeamRankingApp.Android
 {
@@ -21,7 +23,7 @@ namespace TeamRankingApp.Android
 
         ImageButton btnBack;
         ImageButton btnCommit;
-        List<Game> matches;
+        List<GameModel> matches;
 
         Database db;
 
@@ -38,11 +40,11 @@ namespace TeamRankingApp.Android
 
             //get match info from json data
             string json = Intent.GetStringExtra("Matches");
-            List<GameViewModel> gvms = JsonConvert.DeserializeObject<List<GameViewModel>>(json);
+            Tuple<int, int, int, int>[] gvms = JsonConvert.DeserializeObject<Tuple<int, int, int, int>[]>(json);
 
             List<Team> teams = db.GetTeams();
             matches = gvms.Select(g =>
-                Game.Create(teams.First(t => t.TeamID == g.Team1ID), g.Team1Score, teams.First(t => t.TeamID == g.Team2ID), g.Team2Score)
+                GameModel.Create(teams.First(t => t.TeamID == g.Item1), g.Item2, teams.First(t => t.TeamID == g.Item3), g.Item4)
             ).ToList();
 
             listView.Adapter = new MatchConfirmAdapter(this, matches);
@@ -51,8 +53,6 @@ namespace TeamRankingApp.Android
             btnBack.Click += (s, e) => GoBack();
             btnCommit = FindViewById<ImageButton>(Resource.Id.confirm_write);
             btnCommit.Click += (s, e) => Commit();
-
-
         }
 
         private void GoBack()
@@ -62,7 +62,10 @@ namespace TeamRankingApp.Android
 
         private void Commit()
         {
-            //TODO - call backend save method
+            db.SaveGames(matches);
+            Toast.MakeText(this, "Results Saved", ToastLength.Short).Show();
+            Intent i = new Intent(this, typeof(Home));
+            StartActivity(i);
         }
 
     }

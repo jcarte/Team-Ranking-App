@@ -1,19 +1,17 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using TeamRankingApp.Domain;
 using Newtonsoft.Json;
-using System.Collections;
-using System.Threading.Tasks;
 using System.Threading;
+using TeamRankingApp.Domain.Models;
+using TeamRankingApp.Domain.Data;
+using System;
 
 namespace TeamRankingApp.Android
 {
@@ -34,8 +32,8 @@ namespace TeamRankingApp.Android
 
         int matchNumber = 0;//current match number (non 0 based)
 
-        List<Game> matches;//all matches ever chosen
-        Game currentMatch = null;
+        List<GameModel> matches;//all matches ever chosen
+        GameModel currentMatch = null;
 
         Database db = new Database();
         bool isGettingNextMatch = false;
@@ -97,7 +95,7 @@ namespace TeamRankingApp.Android
             }
 
             gen = new GameGenerator(players.ToList(),teams);
-            matches = new List<Game>();
+            matches = new List<GameModel>();
 
             //get images from layout
             t1p1 = FindViewById<ImageButton>(Resource.Id.matchviewer_T1P1);
@@ -117,7 +115,7 @@ namespace TeamRankingApp.Android
             if(!isGettingNextMatch)
             {
                 matchNumber--;
-                Game g = matches[matchNumber - 1];
+                GameModel g = matches[matchNumber - 1];
                 currentMatch = null;
                 currentMatch = g;
 
@@ -149,7 +147,7 @@ namespace TeamRankingApp.Android
                 isGettingNextMatch = true;
                 matchNumber++;
 
-                Game g;
+                GameModel g;
 
                 if (matches.Count < matchNumber)
                 {
@@ -190,7 +188,7 @@ namespace TeamRankingApp.Android
 
 
 
-        private void UpdateImages(Game m)
+        private void UpdateImages(GameModel m)
         {
             int img_t1p1 = new PlayerView(m.Teams[0].Players[0]).Image;
             int img_t1p2 = new PlayerView(m.Teams[0].Players[1]).Image;
@@ -217,28 +215,15 @@ namespace TeamRankingApp.Android
         private void CommitResults()
         {
             //remove any zero score matches
-            List <Game>  matchesforsave;
-            matchesforsave = matches;
+            List<GameModel> matchesforsave = matches.Where(m => m.Team1Score > 0 || m.Team2Score > 0).ToList();
 
-
-            List<GameViewModel> gvms = matchesforsave.Select(m => new GameViewModel()
-            {
-                Team1ID = m.Team1ID,
-                Team1Score = m.Team1Score,
-                Team2ID = m.Team2ID,
-                Team2Score = m.Team2Score
-            }).ToList();
-
-            matchesforsave = matches.Where(m => m.Team1Score == 0 && m.Team2Score == 0).ToList();
+            Tuple<int, int, int, int>[] tups = matchesforsave.Select(g => Tuple.Create<int, int, int, int>(g.Team1ID,g.Team1Score,g.Team2ID,g.Team2Score)).ToArray();
 
             Intent i = new Intent(this, typeof(CommitResults));//launch match viewer screen
-            string json = JsonConvert.SerializeObject(gvms);//convert all selected matches to JSON text
+            string json = JsonConvert.SerializeObject(tups);//convert all selected matches to JSON text
             i.PutExtra("Matches", json);//send JSON text to activity
             StartActivity(i);
-
         }
-        
-     
 
     }
 }

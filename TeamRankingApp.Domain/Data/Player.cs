@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace TeamRankingApp.Domain
+namespace TeamRankingApp.Domain.Data
 {
     /// <summary>
     /// A single player

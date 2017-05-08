@@ -1,22 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TeamRankingApp.Domain.Data;
+using TeamRankingApp.Domain.Models;
 
 namespace TeamRankingApp.Domain
 {
     public class GameCollection
     {
 
-        public List<Game> FinalGameList;
+        public List<GameModel> FinalGameList;
 
         public GameCollection()
         {
-            FinalGameList = new List<Game>();
+            FinalGameList = new List<GameModel>();
         }
 
-        public int MatchConsecutiveNotPlayed(Game m)
+        public int MatchConsecutiveNotPlayed(GameModel m)
         {
 
-            Game tm = FinalGameList.LastOrDefault(ma => ma == m);
+            GameModel tm = FinalGameList.LastOrDefault(ma => ma == m);
 
             if (tm == null)
                 return FinalGameList.Count;
@@ -28,7 +30,7 @@ namespace TeamRankingApp.Domain
 
         public int TeamConsecutiveOffCourt(Team t)
         {
-            Game tm = FinalGameList.LastOrDefault(ma => ma.Teams.Contains(t));
+            GameModel tm = FinalGameList.LastOrDefault(ma => ma.Teams.Contains(t));
 
             if (tm == null)
                 return FinalGameList.Count;
@@ -41,7 +43,7 @@ namespace TeamRankingApp.Domain
         public int IndividualConsecutiveOffCourt(Player p)
         {
             //Match tm = FinalMatchList.LastOrDefault(ma => ma.OffCourtPlayers.Contains(p));
-            Game tm = FinalGameList.LastOrDefault(ma => ma.Teams[0].Players.Contains(p) || ma.Teams[1].Players.Contains(p));
+            GameModel tm = FinalGameList.LastOrDefault(ma => ma.Teams[0].Players.Contains(p) || ma.Teams[1].Players.Contains(p));
 
             if (tm == null)
                 return FinalGameList.Count;
@@ -56,7 +58,7 @@ namespace TeamRankingApp.Domain
             return FinalGameList.Count(g=>g.ContainsPlayer(p));
         }
 
-        public void AddGame(Game g)
+        public void AddGame(GameModel g)
         {
             FinalGameList.Add(g);
         }

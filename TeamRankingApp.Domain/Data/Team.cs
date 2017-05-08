@@ -1,7 +1,7 @@
 ﻿using SQLite;
 using System.Collections.Generic;
 
-namespace TeamRankingApp.Domain
+namespace TeamRankingApp.Domain.Data
 {
     /// <summary>
     /// Two player team

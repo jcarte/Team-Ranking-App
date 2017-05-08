@@ -10,21 +10,22 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using TeamRankingApp.Domain;
+using TeamRankingApp.Domain.Models;
 
 namespace TeamRankingApp.Android
 {
-    public class MatchConfirmAdapter : BaseAdapter<Game>
+    public class MatchConfirmAdapter : BaseAdapter<GameModel>
     {
-        List<Game> matches;
+        List<GameModel> matches;
         Activity context;
 
-        public MatchConfirmAdapter(Activity context, List<Game> matches):base()
+        public MatchConfirmAdapter(Activity context, List<GameModel> matches):base()
         {
             this.context = context;
             this.matches = matches;
         }
 
-        public override Game this[int position]
+        public override GameModel this[int position]
         {
             get
             {
@@ -48,7 +49,7 @@ namespace TeamRankingApp.Android
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             //this show how to render an individual row in the custom list
-            Game m = matches[position];
+            GameModel m = matches[position];
             //TODO: update s1 and s2 to be the scores passed from backend once available
             //string s1 = "1";
             //string s2 = "11";

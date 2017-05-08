@@ -1,5 +1,5 @@
 using System;
-using TeamRankingApp.Domain;
+using TeamRankingApp.Domain.Data;
 
 namespace TeamRankingApp.Android
 {

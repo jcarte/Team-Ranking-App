@@ -1,23 +1,12 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TeamRankingApp.Domain.Data;
 
-namespace TeamRankingApp.Domain
+namespace TeamRankingApp.Domain.Models
 {
-    /// <summary>
-    /// The results of a single game where two teams play against each other
-    /// </summary>
-    public class Game
+    public class GameModel
     {
-        [PrimaryKey, AutoIncrement]
-        public int TransactionID { get; set; }
-
-        /// <summary>
-        /// Timestamp when the record was created / game was created
-        /// </summary>
-        public DateTime Created { get; set; }
-
         public int Team1ID { get; set; }
 
         public int Team1Score { get; set; }
@@ -26,23 +15,18 @@ namespace TeamRankingApp.Domain
 
         public int Team2Score { get; set; }
 
-        [Ignore]
         public Team Team1 { get; set; }
 
-        [Ignore]
         public Team Team2 { get; set; }
 
-        [Ignore]
         public Team[] Teams { get { return new Team[] { Team1, Team2 }; } }
 
-        [Ignore]
         public List<Player> OffCourtPlayers { get; set; }
 
-        public Game() { }
+        public GameModel() { }
 
 
-
-        public static Game Create(Team t1, int t1Score, Team t2, int t2Score)
+        public static GameModel Create(Team t1, int t1Score, Team t2, int t2Score)
         {
             return Create(t1, t1Score, t2, t2Score, new List<Player>());
         }
@@ -56,11 +40,10 @@ namespace TeamRankingApp.Domain
         /// <param name="t2"></param>
         /// <param name="t2Score"></param>
         /// <returns></returns>
-        public static Game Create(Team t1, int t1Score, Team t2, int t2Score, List<Player> allPlayers)
+        public static GameModel Create(Team t1, int t1Score, Team t2, int t2Score, List<Player> allPlayers)
         {
-            return new Game()
+            return new GameModel()
             {
-                Created = DateTime.Now,
                 Team1ID = t1.TeamID,
                 Team1Score = t1Score,
                 Team2ID = t2.TeamID,
@@ -142,10 +125,23 @@ namespace TeamRankingApp.Domain
                 return Team2Score > Team1Score;
         }
 
+        public GameModel Clone()
+        {
+            return new GameModel()
+            {
+                OffCourtPlayers = this.OffCourtPlayers,
+                Team1ID = this.Team1ID,
+                Team1 = this.Team1,
+                Team1Score = this.Team1Score,
+                Team2ID = this.Team2ID,
+                Team2 = this.Team2,
+                Team2Score = this.Team2Score
+            };
+        }
 
         public override bool Equals(object obj)
         {
-            return (Game)obj == this;
+            return (GameModel)obj == this;
         }
         public override int GetHashCode()
         {
@@ -153,7 +149,7 @@ namespace TeamRankingApp.Domain
         }
 
         //Does this break database logic?
-        public static bool operator ==(Game a, Game b)
+        public static bool operator ==(GameModel a, GameModel b)
         {
             // If both are null, or both are same instance, return true.
             if (ReferenceEquals(a, b))
@@ -171,7 +167,7 @@ namespace TeamRankingApp.Domain
             return b.Teams.Contains(a.Teams[0]) && b.Teams.Contains(a.Teams[1]);
         }
 
-        public static bool operator !=(Game a, Game b)
+        public static bool operator !=(GameModel a, GameModel b)
         {
             return !(a == b);
         }

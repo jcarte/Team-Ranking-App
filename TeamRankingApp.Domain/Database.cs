@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TeamRankingApp.Domain.Data;
+using TeamRankingApp.Domain.Models;
 
 namespace TeamRankingApp.Domain
 {
@@ -34,10 +36,10 @@ namespace TeamRankingApp.Domain
         public void Load()
         { 
             //TODO remove
-            if(File.Exists(FilePath))
-            {
-                File.Delete(FilePath);
-            }
+            //if(File.Exists(FilePath))
+            //{
+            //    File.Delete(FilePath);
+            //}
             
 
             if(string.IsNullOrWhiteSpace(FilePath))
@@ -63,7 +65,7 @@ namespace TeamRankingApp.Domain
         public List<Player> GetPlayers()
         {
             List<Player> plays = db.Table<Player>().ToList();
-            List<Game> games = GetGames();
+            List<GameModel> games = GetGames();
 
             foreach (var p in plays)
             {
@@ -80,7 +82,7 @@ namespace TeamRankingApp.Domain
         public List<Team> GetTeams()
         {
             List<Team> teams = db.Table<Team>().ToList();
-            List<Game> games = GetGames();
+            List<GameModel> games = GetGames();
 
             foreach (Team t in teams)
             {
@@ -95,30 +97,40 @@ namespace TeamRankingApp.Domain
             return teams;
         }
 
-        private List<Game> GetGames()
+        private List<GameModel> GetGames()
         {
             List<Game> trans = db.Table<Game>().ToList();
+            List<GameModel> games = new List<GameModel>();
 
             foreach (var t in trans)
             {
-                t.Team1 = db.Find<Team>(t.Team1ID);
-                t.Team2 = db.Find<Team>(t.Team2ID);
-                t.Team1.Player1 = db.Find<Player>(t.Team1.Player1ID);
-                t.Team1.Player2 = db.Find<Player>(t.Team1.Player2ID);
-                t.Team2.Player1 = db.Find<Player>(t.Team2.Player1ID);
-                t.Team2.Player2 = db.Find<Player>(t.Team2.Player2ID);
+                var Team1 = db.Find<Team>(t.Team1ID);
+                var Team2 = db.Find<Team>(t.Team2ID);
+                Team1.Player1 = db.Find<Player>(Team1.Player1ID);
+                Team1.Player2 = db.Find<Player>(Team1.Player2ID);
+                Team2.Player1 = db.Find<Player>(Team2.Player1ID);
+                Team2.Player2 = db.Find<Player>(Team2.Player2ID);
+
+                games.Add(GameModel.Create(Team1, t.Team1Score, Team2, t.Team2Score));
             }
-            return trans;
+            return games;
         }
 
-        public void SaveGame(Game t)
+        public void SaveGame(GameModel t)
         {
-            SaveGames(new List<Game>() { t });
+            SaveGames(new List<GameModel>() { t });
         }
 
-        public void SaveGames(IEnumerable<Game> t)
+        public void SaveGames(IEnumerable<GameModel> t)
         {
-            db.InsertAll(t);
+            db.InsertAll(t.Select(g => new Game()
+            {
+                Created = DateTime.Now,
+                Team1ID = g.Team1ID,
+                Team1Score = g.Team1Score,
+                Team2ID = g.Team2ID,
+                Team2Score = g.Team2Score
+            }));
         }
 
 
