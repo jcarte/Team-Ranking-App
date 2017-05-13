@@ -18,6 +18,7 @@ namespace TeamRankingApp.Android
         
         //TextView statsBtn;
         TextView playBtn;
+        ImageButton settingsBtn;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,6 +32,10 @@ namespace TeamRankingApp.Android
             //play button
             playBtn = FindViewById<TextView>(Resource.Id.home_play);
             playBtn.Click += (s, e) => StartActivity(typeof(PlayerInputActivity));
+
+            //settings
+            settingsBtn = FindViewById<ImageButton>(Resource.Id.settings_menu);
+            settingsBtn.Click += (s, e) => StartActivity(typeof(SettingsMenu));
         }
     }
 }

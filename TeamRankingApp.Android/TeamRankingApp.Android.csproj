@@ -188,6 +188,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Notes.txt" />
+    <AndroidResource Include="Resources\drawable\pull.png" />
+    <AndroidResource Include="Resources\drawable\push.png" />
+    <AndroidResource Include="Resources\drawable\settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

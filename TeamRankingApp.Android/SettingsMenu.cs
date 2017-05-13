@@ -21,6 +21,7 @@ namespace TeamRankingApp.Android
         ImageButton btnPush;
         ImageButton btnPull;
         EditText DBKey;
+        TextView DBKeySave;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -31,11 +32,20 @@ namespace TeamRankingApp.Android
             //Set buttons to layout
             btnCancel = FindViewById<ImageButton>(Resource.Id.setting_cancel);
             btnCancel.Click += (s, e) => GoBack();
+
             btnPush = FindViewById<ImageButton>(Resource.Id.push_tocloud);
             btnCancel.Click += (s, e) => PushToCloud();
+
             btnPull = FindViewById<ImageButton>(Resource.Id.pull_fromcloud);
             btnCancel.Click += (s, e) => PullFromCloud();
             DBKey = FindViewById<EditText>(Resource.Id.input_DBKey);
+            DBKeySave = FindViewById<TextView>(Resource.Id.save_DBKey);
+            DBKeySave.Click += (s, e) => SaveDBKey();
+        }
+
+        private void SaveDBKey()
+        {
+            throw new NotImplementedException();
         }
 
         private void PullFromCloud()
