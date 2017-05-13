@@ -182,6 +182,12 @@ namespace TeamRankingApp.Android
 			// aapt resource value: 0x7f060024
 			public const int playerinput_submit = 2131099684;
 			
+			// aapt resource value: 0x7f060027
+			public const int pull_fromcloud = 2131099687;
+			
+			// aapt resource value: 0x7f060026
+			public const int push_tocloud = 2131099686;
+			
 			// aapt resource value: 0x7f060018
 			public const int row1 = 2131099672;
 			
@@ -211,6 +217,9 @@ namespace TeamRankingApp.Android
 			
 			// aapt resource value: 0x7f060006
 			public const int savescore2 = 2131099654;
+			
+			// aapt resource value: 0x7f060025
+			public const int setting_cancel = 2131099685;
 			
 			// aapt resource value: 0x7f06000c
 			public const int textView1 = 2131099660;
@@ -248,6 +257,9 @@ namespace TeamRankingApp.Android
 			
 			// aapt resource value: 0x7f030005
 			public const int PlayerInput = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int Settings = 2130903046;
 			
 			static Layout()
 			{

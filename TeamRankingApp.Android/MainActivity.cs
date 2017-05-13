@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using TeamRankingApp.Domain;
 
 namespace TeamRankingApp.Android
 {
-    [Activity(Label = "Who's Next?", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
+    [Activity(Label = "Who's Next?", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)

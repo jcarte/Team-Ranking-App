@@ -12,10 +12,11 @@ using System.Threading;
 using TeamRankingApp.Domain.Models;
 using TeamRankingApp.Domain.Data;
 using System;
+using Android.Content.PM;
 
 namespace TeamRankingApp.Android
 {
-    [Activity(Label = "Matches", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
+    [Activity(Label = "Matches", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen", ScreenOrientation = ScreenOrientation.Portrait) ]
     public class MatchViewerActivity : Activity
     {
         GameGenerator gen;

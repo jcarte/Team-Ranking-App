@@ -9,10 +9,11 @@ using Android.Widget;
 using TeamRankingApp.Domain;
 using Newtonsoft.Json;
 using TeamRankingApp.Domain.Data;
+using Android.Content.PM;
 
 namespace TeamRankingApp.Android
 {
-    [Activity(Label = "Player Input", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen")]
+    [Activity(Label = "Player Input", Theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen", ScreenOrientation = ScreenOrientation.Portrait)]
     public class PlayerInputActivity : Activity
     {
 
