@@ -24,17 +24,16 @@
         android:layout_marginLeft="100px"
         android:layout_marginRight="100px"
         android:layout_marginTop="10dp">
-      <EditableText
+      <EditText
         android:id="@+id/input_DBKey"
         android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_width="match_parent"      
         android:layout_marginLeft="100px"
         android:layout_marginRight="100px"
         android:layout_marginTop="10dp"
         android:gravity="center"
       >       
-      </EditableText> 
+      </EditText> 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
