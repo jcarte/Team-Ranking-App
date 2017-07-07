@@ -1,5 +1,12 @@
-﻿-Make gamegenerator output a GameViewModel, move not on court players to viewmodel (not needed in db model) - used to fix scrolling through differet games
+﻿
+
+-Make gamegenerator output a GameViewModel, move not on court players to viewmodel (not needed in db model) - used to fix scrolling through differet games
 -Check equals logic on game, what if have same two teams play each other in one session? get overwritten?
 
 -Cleanup database call, loaded twice
 -Cleanup database delete / load defaults
+
+
+JC 07/07/2017
+All Fields for DB utilities put in DropBoxSync.axml, Also have Settings.axml which is pretty version, move from DBS to settings,
+layout referenced in DropboxSync.cs

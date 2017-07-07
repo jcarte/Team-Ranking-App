@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="dropboxcoreapiandroid">
+  <name>Dropbox Core API Android SDK</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>https://xamarin.com/</publisher-url>
+  <src-url>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/DropboxCoreApi/Android</src-url>
+  <version>1.6.3.2</version>
+  <summary>The Core API is based on HTTP and OAuth and provides low-level calls to access and manipulate a user's Dropbox account.</summary>
+  <samples>
+    <sample id="DropboxCoreApiSample">
+      <name>Dropbox Core API Sample. Demonstrates Dropbox Core API functionality.</name>
+      <summary>Dropbox Core API Sample. Demonstrates Dropbox Core API functionality.</summary>
+    </sample>
+  </samples>
+</component>
