@@ -10,10 +10,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using TeamRankingApp.Domain;
-using Newtonsoft.Json;
 using TeamRankingApp.Domain.Models;
 using TeamRankingApp.Domain.Data;
 using Android.Content.PM;
+using Newtonsoft.Json;
 
 namespace TeamRankingApp.Android
 {

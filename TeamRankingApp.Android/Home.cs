@@ -22,20 +22,23 @@ namespace TeamRankingApp.Android
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);           
-            SetContentView(Resource.Layout.Home);
+            base.OnCreate(savedInstanceState);
+            //StartActivity(typeof(DropboxSync));
 
-            //statsbutton
-            //statsBtn = FindViewById<TextView>(Resource.Id.home_stats);
-            //statsBtn.Click += (s, e) => StartActivity(typeof(?????));
 
-            //play button
-            playBtn = FindViewById<TextView>(Resource.Id.home_play);
-            playBtn.Click += (s, e) => StartActivity(typeof(PlayerInputActivity));
+            //SetContentView(Resource.Layout.Home);
 
-            //settings
-            settingsBtn = FindViewById<ImageButton>(Resource.Id.settings_menu);
-            settingsBtn.Click += (s, e) => StartActivity(typeof(SettingsMenu));
+            ////statsbutton
+            ////statsBtn = FindViewById<TextView>(Resource.Id.home_stats);
+            ////statsBtn.Click += (s, e) => StartActivity(typeof(?????));
+
+            ////play button
+            //playBtn = FindViewById<TextView>(Resource.Id.home_play);
+            //playBtn.Click += (s, e) => StartActivity(typeof(PlayerInputActivity));
+
+            ////settings
+            //settingsBtn = FindViewById<ImageButton>(Resource.Id.settings_menu);
+            //settingsBtn.Click += (s, e) => StartActivity(typeof(SettingsMenu));
         }
     }
 }

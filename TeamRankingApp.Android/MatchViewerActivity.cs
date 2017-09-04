@@ -7,12 +7,12 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using TeamRankingApp.Domain;
-using Newtonsoft.Json;
 using System.Threading;
 using TeamRankingApp.Domain.Models;
 using TeamRankingApp.Domain.Data;
 using System;
 using Android.Content.PM;
+using Newtonsoft.Json;
 
 namespace TeamRankingApp.Android
 {

@@ -10,3 +10,7 @@
 JC 07/07/2017
 All Fields for DB utilities put in DropBoxSync.axml, Also have Settings.axml which is pretty version, move from DBS to settings,
 layout referenced in DropboxSync.cs
+
+
+08/07/2017
+Attempted to remove some packages, most come from Newtonsoft

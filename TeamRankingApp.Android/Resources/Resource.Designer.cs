@@ -116,35 +116,35 @@ namespace TeamRankingApp.Android
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f06001d
+			public const int BtnGuy = 2131099677;
+			
+			// aapt resource value: 0x7f06001e
+			public const int BtnJames = 2131099678;
+			
 			// aapt resource value: 0x7f060020
-			public const int BtnGuy = 2131099680;
+			public const int BtnLuca = 2131099680;
 			
 			// aapt resource value: 0x7f060021
-			public const int BtnJames = 2131099681;
+			public const int BtnMartin = 2131099681;
 			
 			// aapt resource value: 0x7f060023
-			public const int BtnLuca = 2131099683;
+			public const int BtnMegan = 2131099683;
 			
 			// aapt resource value: 0x7f060024
-			public const int BtnMartin = 2131099684;
+			public const int BtnNeil = 2131099684;
 			
 			// aapt resource value: 0x7f060026
-			public const int BtnMegan = 2131099686;
+			public const int BtnNicola = 2131099686;
 			
 			// aapt resource value: 0x7f060027
-			public const int BtnNeil = 2131099687;
-			
-			// aapt resource value: 0x7f060029
-			public const int BtnNicola = 2131099689;
-			
-			// aapt resource value: 0x7f06002a
-			public const int BtnRick = 2131099690;
+			public const int BtnRick = 2131099687;
 			
 			// aapt resource value: 0x7f060001
 			public const int cancel_write = 2131099649;
 			
-			// aapt resource value: 0x7f060014
-			public const int checkBox1 = 2131099668;
+			// aapt resource value: 0x7f060011
+			public const int checkBox1 = 2131099665;
 			
 			// aapt resource value: 0x7f060002
 			public const int confirm_write = 2131099650;
@@ -152,86 +152,77 @@ namespace TeamRankingApp.Android
 			// aapt resource value: 0x7f060000
 			public const int confirmsave_matchview = 2131099648;
 			
-			// aapt resource value: 0x7f060009
-			public const int dbs_AccessToken = 2131099657;
-			
-			// aapt resource value: 0x7f06000c
-			public const int dbs_Download = 2131099660;
-			
-			// aapt resource value: 0x7f06000e
-			public const int dbs_FileStatus = 2131099662;
+			// aapt resource value: 0x7f060012
+			public const int game_number = 2131099666;
 			
 			// aapt resource value: 0x7f06000b
-			public const int dbs_Link = 2131099659;
+			public const int home_play = 2131099659;
 			
-			// aapt resource value: 0x7f06000a
-			public const int dbs_SecretKey = 2131099658;
+			// aapt resource value: 0x7f06000c
+			public const int home_stats = 2131099660;
+			
+			// aapt resource value: 0x7f060029
+			public const int input_DBKey = 2131099689;
+			
+			// aapt resource value: 0x7f06000f
+			public const int login_LoginButton = 2131099663;
+			
+			// aapt resource value: 0x7f06000e
+			public const int login_Password = 2131099662;
 			
 			// aapt resource value: 0x7f06000d
-			public const int dbs_Upload = 2131099661;
+			public const int login_Username = 2131099661;
+			
+			// aapt resource value: 0x7f060017
+			public const int lowerScore = 2131099671;
+			
+			// aapt resource value: 0x7f060013
+			public const int matchviewer_T1P1 = 2131099667;
 			
 			// aapt resource value: 0x7f060015
-			public const int game_number = 2131099669;
-			
-			// aapt resource value: 0x7f060011
-			public const int home_play = 2131099665;
-			
-			// aapt resource value: 0x7f060012
-			public const int home_stats = 2131099666;
-			
-			// aapt resource value: 0x7f06002c
-			public const int input_DBKey = 2131099692;
-			
-			// aapt resource value: 0x7f06001a
-			public const int lowerScore = 2131099674;
+			public const int matchviewer_T1P2 = 2131099669;
 			
 			// aapt resource value: 0x7f060016
-			public const int matchviewer_T1P1 = 2131099670;
+			public const int matchviewer_T2P1 = 2131099670;
 			
 			// aapt resource value: 0x7f060018
-			public const int matchviewer_T1P2 = 2131099672;
+			public const int matchviewer_T2P2 = 2131099672;
+			
+			// aapt resource value: 0x7f06001a
+			public const int matchviewer_back = 2131099674;
+			
+			// aapt resource value: 0x7f06000a
+			public const int matchviewer_home = 2131099658;
 			
 			// aapt resource value: 0x7f060019
-			public const int matchviewer_T2P1 = 2131099673;
+			public const int matchviewer_next = 2131099673;
 			
 			// aapt resource value: 0x7f06001b
-			public const int matchviewer_T2P2 = 2131099675;
-			
-			// aapt resource value: 0x7f06001d
-			public const int matchviewer_back = 2131099677;
-			
-			// aapt resource value: 0x7f060010
-			public const int matchviewer_home = 2131099664;
-			
-			// aapt resource value: 0x7f06001c
-			public const int matchviewer_next = 2131099676;
-			
-			// aapt resource value: 0x7f06001e
-			public const int matchviewer_save = 2131099678;
-			
-			// aapt resource value: 0x7f06002b
-			public const int playerinput_submit = 2131099691;
-			
-			// aapt resource value: 0x7f060030
-			public const int pull_fromcloud = 2131099696;
-			
-			// aapt resource value: 0x7f06002f
-			public const int push_tocloud = 2131099695;
-			
-			// aapt resource value: 0x7f06001f
-			public const int row1 = 2131099679;
-			
-			// aapt resource value: 0x7f060022
-			public const int row2 = 2131099682;
-			
-			// aapt resource value: 0x7f060025
-			public const int row3 = 2131099685;
+			public const int matchviewer_save = 2131099675;
 			
 			// aapt resource value: 0x7f060028
-			public const int row4 = 2131099688;
+			public const int playerinput_submit = 2131099688;
 			
 			// aapt resource value: 0x7f06002d
-			public const int save_DBKey = 2131099693;
+			public const int pull_fromcloud = 2131099693;
+			
+			// aapt resource value: 0x7f06002c
+			public const int push_tocloud = 2131099692;
+			
+			// aapt resource value: 0x7f06001c
+			public const int row1 = 2131099676;
+			
+			// aapt resource value: 0x7f06001f
+			public const int row2 = 2131099679;
+			
+			// aapt resource value: 0x7f060022
+			public const int row3 = 2131099682;
+			
+			// aapt resource value: 0x7f060025
+			public const int row4 = 2131099685;
+			
+			// aapt resource value: 0x7f06002a
+			public const int save_DBKey = 2131099690;
 			
 			// aapt resource value: 0x7f060003
 			public const int saveplayer1 = 2131099651;
@@ -251,17 +242,17 @@ namespace TeamRankingApp.Android
 			// aapt resource value: 0x7f060006
 			public const int savescore2 = 2131099654;
 			
-			// aapt resource value: 0x7f06002e
-			public const int setting_cancel = 2131099694;
+			// aapt resource value: 0x7f06002b
+			public const int setting_cancel = 2131099691;
 			
-			// aapt resource value: 0x7f06000f
-			public const int settings_menu = 2131099663;
+			// aapt resource value: 0x7f060009
+			public const int settings_menu = 2131099657;
 			
-			// aapt resource value: 0x7f060013
-			public const int textView1 = 2131099667;
+			// aapt resource value: 0x7f060010
+			public const int textView1 = 2131099664;
 			
-			// aapt resource value: 0x7f060017
-			public const int topScore = 2131099671;
+			// aapt resource value: 0x7f060014
+			public const int topScore = 2131099668;
 			
 			static Id()
 			{
@@ -283,10 +274,10 @@ namespace TeamRankingApp.Android
 			public const int CustomMatchResultsRow = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int DropBoxSync = 2130903042;
+			public const int Home = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Home = 2130903043;
+			public const int Login = 2130903043;
 			
 			// aapt resource value: 0x7f030004
 			public const int Main = 2130903044;
